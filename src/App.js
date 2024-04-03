@@ -1,4 +1,5 @@
 import { createBrowserRouter , RouterProvider} from 'react-router-dom';
+import { Container } from 'react-bootstrap'
 import Home from './pages/Home';
 import Profile from './pages/profile';
 import Cart from './pages/Cart';
