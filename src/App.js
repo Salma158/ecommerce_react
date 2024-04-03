@@ -2,20 +2,39 @@ import { createBrowserRouter , RouterProvider} from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/profile';
 import Cart from './pages/Cart';
-import Login from './pages/Login';
+import { action as logoutAction } from './pages/Logout';
 import Root from './pages/Root'
 import Error from './pages/Error';
+import AuthenticationPage, {
+  action as authAction,
+} from './pages/Authentication';
+import { 
+  // checkAuthLoader, 
+  tokenLoader } from './util/auth';
+
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
     errorElement: <Error />,
+    id: 'root',
+    loader: tokenLoader,
     children: [
-      {path : '/', element : <Home />},
-      {path : '/profile', element : <Profile />},
-      {path : '/cart', element: <Cart />},
-      {path : '/login', element: <Login />},
+      { index: true, element: <Home /> },
+      {path : 'profile', element : <Profile />},
+      {path : 'cart', element: <Cart />},
+      {
+        path: 'auth',
+        element: <AuthenticationPage />,
+        action: authAction,
+      },
+      {
+        path: 'logout',
+        action: logoutAction,
+      },
     ]
   },
 ])
