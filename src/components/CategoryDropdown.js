@@ -14,11 +14,11 @@ function CategoryDropdown() {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle id="dropdown-basic" style={{ background: "transparent", color: "inherit", border: "none", fontSize: "1.6rem" }}>
         Categories
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu style={{ background: "transparent" }}>
         {categories.map((category) => (
           <Dropdown.Item key={category.id}>
             <NavLink to={`/categories/${category.id}/products`}>{category.categoryname}</NavLink>

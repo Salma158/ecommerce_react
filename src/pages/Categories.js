@@ -3,6 +3,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories } from '../store/categories/slices/categorySlice'; 
 import CategoryCard from '../components/CategoryCard'; 
+import "./Categories.css"
+import Button from "../components/Button"; // Import your Button component
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 function Categories() { 
   const dispatch = useDispatch();
@@ -22,11 +25,21 @@ function Categories() {
 
   return (
     <Container>
-      <h1>Categories</h1>
+      <Row className="align-items-center"> {}
+        <Col>
+          <h1 className='categories'>Categories</h1>
+        </Col>
+        <Col className="productButton">
+    <Link to="/products">
+        <Button text="Products" backgroundColor="#000000" color="#ffffff" /> {}
+    </Link>
+</Col>
+
+      </Row>
       <Row>
         {categories.map((category) => (
           <Col key={category.id} sm={12} md={6} lg={4} xl={3}>
-            <CategoryCard category={category} /> {/* Render CategoryCard */}
+            <CategoryCard category={category} /> {}
           </Col>
         ))}
       </Row>
@@ -35,4 +48,3 @@ function Categories() {
 }
 
 export default Categories;
-

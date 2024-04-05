@@ -1,18 +1,27 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './CategoryCard.css'; 
 
 function CategoryCard({ category }) {
+  const truncateDescription = (description) => {
+    const periodIndex = description.indexOf('.');
+    if (periodIndex !== -1) {
+      return description.substring(0, periodIndex + 1);
+    }
+    return description;
+  };
+
   return (
-    <Card className='my-3 p-3 rounded'>
-      <Link to={`/categories/${category.id}/products`}>
-        <Card.Img src={category.image} alt={category.categoryname} />
-      </Link>
-      <Card.Body>
-        <Card.Title>{category.categoryname}</Card.Title>
-        <Card.Text>Description: {category.description}</Card.Text>
-      </Card.Body>
-    </Card>
+    <Link to={`/categories/${category.id}/products`} className="category-card-link">
+      <Card className='my-3 rounded category-card'>
+        <Card.Img src={category.image} alt={category.categoryname} className="card-img-top" />
+        <Card.Body>
+          <Card.Title className="category-name">{category.categoryname}</Card.Title>
+          <Card.Text className="category-description">{truncateDescription(category.description)}</Card.Text>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 }
 

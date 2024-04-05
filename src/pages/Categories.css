@@ -1,0 +1,13 @@
+.categories {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-family: 'Unna', serif;
+    margin-right: 180px;
+}
+
+.productButton {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: right; 
+}

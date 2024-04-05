@@ -7,6 +7,7 @@ import { action as logoutAction } from './pages/Logout';
 import Root from './pages/Root'
 import Error from './pages/Error';
 import SingleProduct from './pages/SingleProduct';
+import Produts from './pages/Products'
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         path: 'logout',
         action: logoutAction,
       },
+      { path: 'products', element: <Produts />},
       { path: 'product/:id', element: <SingleProduct />},
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
     ]

@@ -1,54 +1,73 @@
-/* Header styles */
-.header {
-  background-color: #333; /* Set background color */
-  padding: 10px 0; /* Add padding */
+
+header {
+  background-color: transparent; 
+  padding: 10px 0; 
+  color: #0c0c0c; 
+  margin-top: -50px;
 }
 
-/* Brand logo styles */
+.home-page-header {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  padding: 20px; 
+  color: #fff; 
+}
+
 .navbar-brand {
-  color: #fff; /* Set text color */
-  font-size: 1.5rem; /* Set font size */
+  color: inherit; 
+  font-size: 2.5rem; 
+  margin-right: 650px; 
+}
+.navbar-brand {
+  color: inherit; 
+  font-size: 2.5rem; 
+  margin-right: 650px; 
+  cursor: pointer; 
 }
 
-/* Navigation links styles */
+
 .nav-link {
-  color: #fff; /* Set text color */
-  font-size: 1rem; /* Set font size */
-  margin-right: 20px; /* Add right margin */
+  color: inherit; 
+  font-size: 1.6rem; 
 }
 
-/* Cart icon styles */
 .fa-shopping-cart {
-  margin-right: 5px; /* Add right margin */
+  margin-right: 5px; 
 }
 
-/* Logout button styles */
 button {
-  background-color: transparent; /* Set background color */
-  border: none; /* Remove border */
-  color: #fff; /* Set text color */
-  cursor: pointer; /* Set cursor to pointer */
-  font-size: 1rem; /* Set font size */
+  background-color: transparent; 
+  border: none; 
+  color: inherit; 
+  cursor: pointer; 
+  font-size: 1.6rem; 
 }
 
 button:hover {
-  text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline; 
 }
 
-/* Categories dropdown styles */
 .category-toggle {
-  color: #fff; /* Set text color */
-  font-size: 1rem; /* Set font size */
-  margin-right: 20px; /* Add right margin */
+  color: inherit; 
+  font-size: 1.6rem; 
 }
 
-
-
-/* Category dropdown item styles */
 .category-menu .dropdown-item {
-  color: #000 !important; /* Set text color to black */
-  font-size: 1rem !important; /* Set font size */
-  text-decoration: none !important; /* Remove underline */
+  color: #000 !important; 
+  font-size: 1.6rem !important;
+  text-decoration: none !important; 
 }
 
-
+.hero-header {
+  background-color: transparent; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  padding: 20px; 
+  color: #fff; 
+}
