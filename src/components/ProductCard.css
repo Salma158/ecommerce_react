@@ -30,4 +30,31 @@
   .button-container {
     margin-top: auto;
   }
+  .out-of-stock-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  .product-card {
+    position: relative;
+  }
+  
+  .out-of-stock-label {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .add-to-cart-button {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   
