@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCategories } from '../store/categories/slices/categorySlice'; // Update import
-import CategoryCard from '../components/CategoryCard'; // Import CategoryCard component
+import { fetchCategories } from '../store/categories/slices/categorySlice'; 
+import CategoryCard from '../components/CategoryCard'; 
 
-function Categories() { // Rename the function to Categories
+function Categories() { 
   const dispatch = useDispatch();
-  const { categories, loading, error } = useSelector(state => state.categories); // Update state selector
+  const { categories, loading, error } = useSelector(state => state.categories); 
 
   useEffect(() => {
     dispatch(fetchCategories());

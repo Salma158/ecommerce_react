@@ -24,8 +24,6 @@ const SingleProduct = () => {
           <p>Info: {product.productinfo}</p>
           <p>Rating: {product.rating}</p>
           <p>Price: ${product.price}</p>
-          <p>Stock: {product.stock}</p>
-          <p>Created At: {product.createdAt}</p>
         </>
       )}
     </div>

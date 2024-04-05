@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Define initial state
 const initialState = {
   loading: false,
   product: null,
   error: null
 };
 
-// Define thunk for fetching product details
 export const fetchProductDetails = createAsyncThunk(
   'productDetails/fetchProductDetails',
   async (productId, { rejectWithValue }) => {
@@ -24,7 +22,6 @@ export const fetchProductDetails = createAsyncThunk(
   }
 );
 
-// Create productDetails slice
 const productDetailsSlice = createSlice({
   name: 'productDetails',
   initialState,
@@ -46,6 +43,5 @@ const productDetailsSlice = createSlice({
   },
 });
 
-// Export actions and reducer
 export const productDetailsSelector = (state) => state.productDetails;
 export default productDetailsSlice.reducer;

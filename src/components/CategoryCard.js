@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function CategoryCard({ category }) {
   return (
     <Card className='my-3 p-3 rounded'>
-      <Link to={`/category/${category.id}`}>
+      <Link to={`/categories/${category.id}/products`}>
         <Card.Img src={category.image} alt={category.categoryname} />
       </Link>
       <Card.Body>
@@ -17,5 +17,3 @@ function CategoryCard({ category }) {
 }
 
 export default CategoryCard;
-
-
