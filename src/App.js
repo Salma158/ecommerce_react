@@ -18,6 +18,7 @@ import { Provider } from 'react-redux'; // Import Provider from react-redux
 // import { loader as wishlistsLoader } from './pages/Wishlists'
 import { combineReducers, createStore } from 'redux';
 import productReducer from './store/reducers/products';
+import Products from './pages/Products'
 
 
 const rootReducer = combineReducers({
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
     id: "root",
     loader: tokenLoader,
     children: [
-      { index: true, element: <Home /> },
+      // { index: true, element: <Home /> },
+      { index: true, element: <Products /> },
       {
         path: "profile",
         loader: profileDetailsLoader,
