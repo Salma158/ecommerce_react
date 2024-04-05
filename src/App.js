@@ -6,14 +6,14 @@ import Cart from './pages/Cart';
 import { action as logoutAction } from './pages/Logout';
 import Root from './pages/Root'
 import Error from './pages/Error';
+import SingleProduct from './pages/SingleProduct';
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
 import { 
   // checkAuthLoader, 
   tokenLoader } from './util/auth';
-
-
+import CategoryProducts from './pages/CategoryProducts'; // Import CategoryProducts component
 
 
 const router = createBrowserRouter([
@@ -36,6 +36,8 @@ const router = createBrowserRouter([
         path: 'logout',
         action: logoutAction,
       },
+      { path: 'product/:id', element: <SingleProduct />},
+      { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
     ]
   },
 ])

@@ -1,0 +1,33 @@
+
+  .product-image {
+    height: 220px; 
+    object-fit: cover;
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-name {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .product-details p {
+    margin-bottom: 5px !important; 
+  }
+  
+  
+  .button-container {
+    margin-top: auto;
+  }
+  
