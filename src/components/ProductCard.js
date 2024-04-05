@@ -38,18 +38,17 @@ function ProductCard({ product }) {
           <Card.Text>Price: {product.price}</Card.Text>
         </div>
         <div className="button-container">
-  <Button
-    className={`add-to-cart-button ${product.stock <= 0 ? 'disabled' : ''}`}
-    // onClick={handleAddToCart}
-    text="Add to Cart"
-    width="100%"
-    height="40px"
-    backgroundColor="#000"
-    color="#ffffff"
-    disabled={product.stock <= 0}
-  />
-</div>
-
+          <Button
+            className={`add-to-cart-button ${product.stock <= 0 ? 'disabled' : ''}`}
+            // onClick={handleAddToCart}
+            text="Add to Cart"
+            width="100%"
+            height="40px"
+            backgroundColor="#000"
+            color="#ffffff"
+            disabled={product.stock <= 0}
+          />
+        </div>
       </Card.Body>
     </Card>
   );

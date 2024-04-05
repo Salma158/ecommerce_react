@@ -23,7 +23,8 @@ function Products() {
 
   return (
     <Container>
-      <h1>Products</h1>
+      <h1 className='products' style={{ textAlign: 'center' }}>Products</h1>
+
       <Row>
         {products.map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
