@@ -37,9 +37,9 @@ export async function action({ request }) {
 
   let url;
   if (mode === 'login') {
-    url = 'http://localhost:8000/users/login';
+    url = 'http://localhost:8000/users/login/';
   } else if (mode === 'signup') {
-    url = 'http://localhost:8000/users/register';
+    url = 'http://localhost:8000/users/register/';
   }
 
   const response = await fetch(url, {
