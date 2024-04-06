@@ -1,31 +1,25 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+import { createBrowserRouter , RouterProvider} from 'react-router-dom';
+import { Container } from 'react-bootstrap'
+import Home from './pages/Home';
+import { action as logoutAction } from './pages/Logout';
+import Root from './pages/Root'
+import Error from './pages/Error';
+import SingleProduct from './pages/SingleProduct';
+import AuthenticationPage, {
+  action as authAction,
+} from './pages/Authentication';
+import { 
+  // checkAuthLoader, 
+  tokenLoader } from './util/auth';
+import CategoryProducts from './pages/CategoryProducts';
 import Cart from "./pages/Cart";
-import { action as logoutAction } from "./pages/Logout";
-import Root from "./pages/Root";
-import Error from "./pages/Error";
-import AuthenticationPage, { action as authAction } from "./pages/Authentication";
-import {
-   //checkAuthLoader, 
-   tokenLoader } from "./util/auth";
 import ProfileDetailPage from "./pages/ProfileDetails";
 import { loader as profileDetailsLoader } from "./pages/ProfileDetails";
 import { action as editProfileAction } from "./pages/EditProfile";
 import EditProfile from "./pages/EditProfile";
 import { action as deleteAccountAction } from './pages/ProfileDetails'
 import Wishlists from './pages/Wishlists'
-import { Provider } from 'react-redux'; // Import Provider from react-redux
-// import { loader as wishlistsLoader } from './pages/Wishlists'
-import { combineReducers, createStore } from 'redux';
-import productReducer from './store/reducers/products';
-import Products from './pages/Products'
 
-
-const rootReducer = combineReducers({
-  shop: productReducer
-});
-
-const store = createStore(rootReducer);
 
 const router = createBrowserRouter([
   {
@@ -35,8 +29,7 @@ const router = createBrowserRouter([
     id: "root",
     loader: tokenLoader,
     children: [
-      // { index: true, element: <Home /> },
-      { index: true, element: <Products /> },
+      { index: true, element: <Home /> },
       {
         path: "profile",
         loader: profileDetailsLoader,
@@ -61,15 +54,15 @@ const router = createBrowserRouter([
         path: "logout",
         action: logoutAction,
       },
-    ],
+      { path: 'product/:id', element: <SingleProduct />},
+      { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
+    ]
   },
 ]);
 
 function App() {
   return (
-    <Provider store={store}>
       <RouterProvider router={router} />
-    </Provider>
   );
 }
 
