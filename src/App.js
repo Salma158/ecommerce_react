@@ -5,12 +5,11 @@ import { action as logoutAction } from './pages/Logout';
 import Root from './pages/Root'
 import Error from './pages/Error';
 import SingleProduct from './pages/SingleProduct';
+import Produts from './pages/Products'
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
-import { 
-  // checkAuthLoader, 
-  tokenLoader } from './util/auth';
+import { checkAuthLoader, tokenLoader } from './util/auth';
 import CategoryProducts from './pages/CategoryProducts';
 import Cart from "./pages/Cart";
 import ProfileDetailPage from "./pages/ProfileDetails";
@@ -48,12 +47,13 @@ const router = createBrowserRouter([
       {
         path: "wishlists",
         element: <Wishlists />,
-        // loader: wishlistsLoader
+        loader: checkAuthLoader
       },
       {
         path: "logout",
         action: logoutAction,
       },
+      { path: 'products', element: <Produts />},
       { path: 'product/:id', element: <SingleProduct />},
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
     ]

@@ -1,0 +1,29 @@
+
+.hero-section {
+    position: relative;
+  }
+  
+  .hero-image {
+    background-size: cover;
+    background-position: center;
+    height: 550px; 
+  }
+  
+ 
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .hero-line {
+    font-size: 72px;
+    font-size: 4.5rem;
+    font-weight: normal;
+    font-family: 'Unna', serif;
+    line-height: 1.1em;
+    color: white; 
+  }
+  

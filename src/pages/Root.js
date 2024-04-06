@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData, useSubmit } from "react-router-dom"
+import { Outlet, useLoaderData, useSubmit , useLocation } from "react-router-dom"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { useEffect } from 'react';
@@ -34,6 +34,7 @@ function Root(){
         <Footer />
         </>
     )
+   
 }
 
 export default Root

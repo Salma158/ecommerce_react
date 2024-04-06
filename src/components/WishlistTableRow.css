@@ -3,4 +3,28 @@
     height: 100px;
     object-fit: contain;
   }
+  /* .checkbox-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  /* .checkbox-cell {
+    text-align: center;
+    vertical-align: middle;
+  } */
+  /* .checkbox-cell {
+    text-align: center;
+  }
+  
+  .checkbox-cell input[type="checkbox"] {
+    vertical-align: middle; */
+  /* } */
+  /* .checkbox-cell {
+    textAlign: "center";
+  }
+   */
+   td.checkbox-cell {
+    text-align: center;
+  }
+  
   
