@@ -1,81 +1,5 @@
-/* .single-product-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .loading {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .error {
-    font-size: 1.2em;
-    color: #ff0000;
-    margin-bottom: 20px;
-  }
-  
-  .product-details {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .product-details h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .product-details img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-details p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #555;
-  }
-  
-  .product-description {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .product-description h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .product-description p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #555;
-  }
-  
-  .button-container {
-    margin-top: auto;
-  }
-  
-  .add-to-cart-button {
-    opacity: 0.5;
-    pointer-events: none;
-  }
 
-  
-  
-   */
+
    .single-product-container {
     max-width: 800px;
     margin: 0 auto;
@@ -100,7 +24,7 @@
     border-radius: 5px;
     padding: 20px;
     background-color: #f9f9f9;
-    text-align: center; /* Center main image */
+    text-align: center; 
   }
   
   .product-details h1 {
@@ -150,9 +74,186 @@
   }
   
   .additional-image {
-    width: 150px; /* Adjust width */
-    height: 150px; /* Adjust height */
-    margin: 0 10px; /* Adjust margin */
+    width: 150px; 
+    height: 150px; 
+    margin: 0 10px; 
     border-radius: 5px;
   }
   
+  .rating-section {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .average-rating {
+    margin-left: 10px; 
+  }
+  
+  .star {
+    cursor: pointer;
+  }
+  
+  .star:hover {
+    color: #ffd700; 
+  }
+  
+  .review-section {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/backgroundflower1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    z-index: -1; 
+}
+
+.feedback-container {
+    z-index: 1; 
+    width: 300px;
+}
+
+
+.review-section h2 {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+  
+  .review-section textarea {
+    width: 120%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .review-section .submit-button:hover {
+    background-color: #333; 
+  }
+  
+  .review-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .review-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 2px;
+    border-radius: 8px;
+  }
+  
+  .review-comment {
+    margin-bottom: 10px;
+  }
+  
+  .review-date {
+    font-style: italic;
+  }
+  
+  .customerReviews {
+    margin-top: 40px;
+  }
+  
+  .customerReviews h2 {
+    text-align: center; 
+    margin-top: 20px; 
+  }
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    height: 100%; 
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+.single-product-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; 
+}
+
+.out-of-stock-label {
+    position: absolute;
+    top: 50%; 
+    right: 0; 
+    transform: translateY(-50%); 
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white;
+    padding: 8px 16px; 
+    border-radius: 20px 0 0 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1; 
+    transition: transform 0.2s ease-in-out; 
+}
+
+.out-of-stock-label:hover {
+    transform: translateY(-50%) translateX(-5px); 
+}
+
+
+.product-details {
+    margin-top: 20px; /* Adjust top margin as needed */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center; /* Center main image */
+    position: relative; /* Add position relative for absolute positioning */
+}
+
+.product-details .main-product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Other existing styles remain the same */

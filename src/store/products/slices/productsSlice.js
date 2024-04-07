@@ -1,4 +1,4 @@
-// store/products/slices/productsSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -6,6 +6,8 @@ const initialState = {
   products: [],
   loading: false,
   error: null,
+  currentPage: 1,
+  totalPages: null,
 };
 
 const productsSlice = createSlice({
@@ -24,21 +26,37 @@ const productsSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    setTotalPages(state, action) {
+      state.totalPages = action.payload;
+    },
   },
 });
 
-export const { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure } = productsSlice.actions;
+export const { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, setCurrentPage, setTotalPages } = productsSlice.actions;
 
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (page = 1) => async (dispatch) => {
   dispatch(fetchProductsStart());
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/products?page=1');
+    const response = await axios.get(`http://127.0.0.1:8000/api/products?page=${page}`);
     dispatch(fetchProductsSuccess(response.data.results));
+    dispatch(setTotalPages(response.data.total_pages));
+    dispatch(setCurrentPage(page));
+  } catch (error) {
+    dispatch(fetchProductsFailure(error.message));
+  }
+};
+
+export const fetchTopProducts = () => async (dispatch) => {
+  dispatch(fetchProductsStart());
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/products/top/');
+    dispatch(fetchProductsSuccess(response.data)); 
   } catch (error) {
     dispatch(fetchProductsFailure(error.message));
   }
 };
 
 export default productsSlice.reducer;
-
-

@@ -2,19 +2,31 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../store/products/slices/productsSlice';
+import { fetchProducts, setCurrentPage } from '../store/products/slices/productsSlice';
 import ProductCard from '../components/ProductCard';
+import "./Products.css"
 
 function Products() {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector(state => state.products);
+  const { products, loading, error, currentPage, totalPages } = useSelector(state => state.products);
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts(currentPage));
+  }, [dispatch, currentPage]);
+
+ 
+const handlePageChange = (newPage) => {
+    dispatch(setCurrentPage(newPage)); 
+    dispatch(fetchProducts(newPage)); 
+  };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '24px', color: '#333' }}>
+        <div className="loading-spinner" style={{ border: '4px solid rgba(0, 0, 0, 0.1)', borderLeftColor: '#333', borderRadius: '50%', width: '40px', height: '40px', animation: 'spin 1s linear infinite' }}></div>
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
@@ -22,18 +34,33 @@ function Products() {
   }
 
   return (
-    <Container>
-      <h1 className='products' style={{ textAlign: 'center' }}>Products</h1>
+    <div>
+      <Container>
+        <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif' }}>Products</h1>
 
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <ProductCard product={product} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <ProductCard product={product} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <div className="pagination-container">
+  <button className="pagination-button" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+    Previous
+  </button>
+  <span>{currentPage} / {totalPages}</span>
+  <button className="pagination-button" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>
+    Next
+  </button>
+</div>
+
+
+    </div>
   );
 }
 
 export default Products;
+
+
