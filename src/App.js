@@ -14,7 +14,8 @@ import AuthenticationPage, {
 import { 
   // checkAuthLoader, 
   tokenLoader } from './util/auth';
-import CategoryProducts from './pages/CategoryProducts'; // Import CategoryProducts component
+import CategoryProducts from './pages/CategoryProducts'; 
+import NewArrivals from './pages/NewArrivals';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
       { path: 'products', element: <Produts />},
       { path: 'product/:id', element: <SingleProduct />},
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
+      { path: 'new-arrivals', element: <NewArrivals />},
+
     ]
   },
 ])

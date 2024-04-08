@@ -6,6 +6,7 @@ import HeroSection from './HeroSection';
 import Feature from './Feature';
 import TopProducts from './TopProducts';
 import FloralStorySection from './FloralStorySection';
+import NewArrivals from './NewArrivals';
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <Categories />
       {/* <Products /> */}
       <TopProducts />
+      {/* <NewArrivals /> */}
       <FloralStorySection />
       <Feature />
 

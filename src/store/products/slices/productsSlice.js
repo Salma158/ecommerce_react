@@ -59,4 +59,14 @@ export const fetchTopProducts = () => async (dispatch) => {
   }
 };
 
+export const fetchNewArrivals = () => async (dispatch) => {
+    dispatch(fetchProductsStart());
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/products?page=1');
+      dispatch(fetchProductsSuccess(response.data.results)); 
+    } catch (error) {
+      dispatch(fetchProductsFailure(error.message));
+    }
+  };
+
 export default productsSlice.reducer;
