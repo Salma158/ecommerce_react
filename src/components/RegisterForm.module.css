@@ -1,0 +1,44 @@
+.registerContainer {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+
+.registerButton {
+  width: 100%;
+  background-color: #5c9735;
+  border: none;
+  margin-top: 20px;
+}
+
+.registerButton:hover {
+  background-color: #4e7d2f;
+}
+
+.registerCol {
+  padding: 0;
+}
+
+.photoCol {
+  display: flex;
+  align-items: stretch;
+}
+
+.photoContainer {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.registerImage {
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.registerationRow {
+  height: 200px;
+}

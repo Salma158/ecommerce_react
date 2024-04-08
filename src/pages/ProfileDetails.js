@@ -1,10 +1,10 @@
 import { json, useRouteLoaderData , redirect} from "react-router-dom";
 import { getAuthToken } from "../util/auth";
-import MyProfile from "../components/MyProfile";
+import MyProfile from "../components/MyProfile/MyProfile";
 
 function ProfileDetailPage() {
+  //make it just loader data
   const data = useRouteLoaderData('profile-details');
-  
   return <MyProfile profile={data} />;
 }
 
@@ -31,22 +31,22 @@ export async function loader() {
   }
 }
 
-export async function action({ params, request }) {
-  const token = getAuthToken();
-  const response = await fetch("http://localhost:8000/users/profiles/", {
-    method: request.method,
-    headers: {
-    Authorization: "Bearer " + token
-    }
-  });
+// export async function action({ params, request }) {
+//   const token = getAuthToken();
+//   const response = await fetch("http://localhost:8000/users/profiles/", {
+//     method: request.method,
+//     headers: {
+//     Authorization: "Bearer " + token
+//     }
+//   });
 
-  if (!response.ok) {
-    throw json(
-      { message: "Could not delete user profile." },
-      {
-        status: 500,
-      }
-    );
-  }
-  return redirect("/");
-}
+//   if (!response.ok) {
+//     throw json(
+//       { message: "Could not modify user profile." },
+//       {
+//         status: 500,
+//       }
+//     );
+//   }
+//   return redirect("/");
+// }

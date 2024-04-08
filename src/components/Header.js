@@ -47,13 +47,13 @@ function Header({ isHeroHeader }) {
                 </li>
               )}
               {!token && (
-                <Nav.Link as={NavLink} to="/auth?mode=login">
+                <Nav.Link as={NavLink} to="/login">
                   Login
                 </Nav.Link>
               )}
               {token && (
-                <Form action="/logout" method="post">
-                  <Nav.Link type="submit">Logout</Nav.Link>
+                <Form action="/logout" method="post" className="nav-link">
+                <button type="submit" className="text-decoration-none">Logout</button>
                 </Form>
               )}
             </Nav>

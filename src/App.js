@@ -6,9 +6,6 @@ import Root from './pages/Root'
 import Error from './pages/Error';
 import SingleProduct from './pages/SingleProduct';
 import Produts from './pages/Products'
-import AuthenticationPage, {
-  action as authAction,
-} from './pages/Authentication';
 import { checkAuthLoader, tokenLoader } from './util/auth';
 import CategoryProducts from './pages/CategoryProducts';
 import Cart from "./pages/Cart";
@@ -16,9 +13,12 @@ import ProfileDetailPage from "./pages/ProfileDetails";
 import { loader as profileDetailsLoader } from "./pages/ProfileDetails";
 import { action as editProfileAction } from "./pages/EditProfile";
 import EditProfile from "./pages/EditProfile";
-import { action as deleteAccountAction } from './pages/ProfileDetails'
+// import { action as accountAction } from './pages/ProfileDetails'
+// import { action as updateProfileAction } from './components/MyProfile/MyProfile'
 import Wishlists from './pages/Wishlists'
-
+import LoginPage, {action as authAction } from './pages/LoginPage';
+import RegisterPage, {action as registerAction} from './pages/RegisterPage'
+import { action as deleteAccount } from './pages/DeleteAccount'
 
 const router = createBrowserRouter([
   {
@@ -34,15 +34,22 @@ const router = createBrowserRouter([
         loader: profileDetailsLoader,
         id: 'profile-details',
         children: [
-          { index: true,  element: <ProfileDetailPage />, action: deleteAccountAction},
-          { path: "edit", element: <EditProfile />, action: editProfileAction}
+          { index: true,  element: <ProfileDetailPage />,
+          //  action: updateProfileAction
+          },
+          // { path: "edit", element: <EditProfile />, action: editProfileAction}
         ]
       },
       { path: "cart", element: <Cart /> },
       {
-        path: "auth",
-        element: <AuthenticationPage />,
+        path: "login",
+        element: <LoginPage />,
         action: authAction,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+        action: registerAction,
       },
       {
         path: "wishlists",
@@ -52,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "logout",
         action: logoutAction,
+      },
+      {
+        path: "deleteaccount",
+        action: deleteAccount
       },
       { path: 'products', element: <Produts />},
       { path: 'product/:id', element: <SingleProduct />},
