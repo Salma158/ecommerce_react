@@ -21,7 +21,7 @@ export const postProductReview = createAsyncThunk(
   'productDetails/postProductReview',
   async ({ productId, reviewData }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('Authrization');
+      const token = localStorage.getItem('Authorization');
 
       if (!token) {
         throw new Error('Authorization token not found');

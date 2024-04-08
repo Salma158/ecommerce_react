@@ -5,6 +5,7 @@ const Button = ({ onClick, text, width, height, backgroundColor, color, disabled
   const buttonStyle = {
     width: width || 'auto',
     height: height || 'auto',
+    textDecoration: 'none', // Corrected property name
     backgroundColor: backgroundColor || '#007bff',
     color: color || '#ffffff',
     border: 'none',

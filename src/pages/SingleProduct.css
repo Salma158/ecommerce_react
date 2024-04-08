@@ -239,13 +239,13 @@
 
 
 .product-details {
-    margin-top: 20px; /* Adjust top margin as needed */
+    margin-top: 20px; 
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
     background-color: #f9f9f9;
-    text-align: center; /* Center main image */
-    position: relative; /* Add position relative for absolute positioning */
+    text-align: center; 
+    position: relative; 
 }
 
 .product-details .main-product-image {
@@ -256,4 +256,59 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Other existing styles remain the same */
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(9, 9, 9);
+    font-size: larger;
+  }
+
+
+  
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .popup.success {
+    background-color: #f2f7f2; /* Green background for success message */
+    color: #090909; /* White text for success message */
+  }
+  
+  .popup.error {
+    background-color: #0a0a0a; 
+    color: #ffffff; 
+
+  }
+  
+  .popup p {
+    margin: 0;
+  }
+  
+  /* Fade-out animation */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+/*   
+  .fade-out {
+    animation: fadeOut 0.2s ease-in-out forwards;
+  } */

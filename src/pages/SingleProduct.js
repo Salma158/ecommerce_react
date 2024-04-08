@@ -1,10 +1,9 @@
 
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductDetails, postProductReview } from '../store/products/slices/productDetailsSlice';
-import Button from '../components/Button'; 
+import Button from '../components/Button';
 import StarRating from '../components/StarRating';
 import './SingleProduct.css';
 
@@ -14,7 +13,10 @@ const SingleProduct = () => {
   const { loading, product, error } = useSelector(state => state.productDetails);
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
-  const [showPopup, setShowPopup] = useState(false); 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [showRatingError, setShowRatingError] = useState(false);
+  const [showReviewError, setShowReviewError] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProductDetails(id));
@@ -22,30 +24,52 @@ const SingleProduct = () => {
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
+    setShowRatingError(false); 
   };
 
   const handleReviewChange = (event) => {
     setReview(event.target.value);
+    setShowReviewError(false); 
   };
 
-  const handleReviewSubmit = () => {
+  const handleReviewSubmit = async () => {
     if (!rating) {
-      alert('Please select a rating.');
+      setShowRatingError(true); 
       return;
     }
     if (!review) {
-      alert('Please provide a review.');
+      setShowReviewError(true); 
       return;
     }
-    dispatch(postProductReview({ productId: id, reviewData: { rating, comment: review } }));
-    setRating(0);
-    setReview('');
-    setShowPopup(true); 
+
+    try {
+      const token = localStorage.getItem('Authorization');
+
+      if (!token) {
+        throw new Error('Authorization token not found');
+      }
+
+      await dispatch(postProductReview({ productId: id, reviewData: { rating, comment: review } }));
+
+      setShowSuccessPopup(true);
+      setTimeout(() => setShowSuccessPopup(false), 2000); 
+
+      setRating(0);
+      setReview('');
+    } catch (error) {
+     
+      if (error.message === 'Authorization token not found') {
+        setShowLoginPopup(true);
+        setTimeout(() => setShowLoginPopup(false), 2000); 
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleString(); 
+    return date.toLocaleString();
   };
 
   const averageRating = product && product.average_rating ? parseFloat(product.average_rating).toFixed(1) : 0;
@@ -58,7 +82,9 @@ const SingleProduct = () => {
           Loading...
         </div>
       )}
-      {error && <div className="error">Error: {error}</div>}
+      {error && !showLoginPopup && (
+        <div className="error">Error: {error}</div>
+      )}
       {product && (
         <div>
           <div className="product-details">
@@ -111,7 +137,9 @@ const SingleProduct = () => {
                 onChange={handleReviewChange}
                 placeholder="Write your review here..."
               />
-              <div className="button-container"> {}
+              {showRatingError && <div className="error">Please select a rating.</div>}
+              {showReviewError && <div className="error">Please provide a review.</div>}
+              <div className="button-container">
                 <Button
                   className="submit button"
                   onClick={handleReviewSubmit}
@@ -126,9 +154,14 @@ const SingleProduct = () => {
           </div>
         </div>
       )}
-      {showPopup && (
-        <div className="popup">
+      {showSuccessPopup && (
+        <div className="popup success">
           Thank you for your review!
+        </div>
+      )}
+      {showLoginPopup && (
+        <div className="popup failure">
+          Please log in to submit a review.
         </div>
       )}
     </div>
