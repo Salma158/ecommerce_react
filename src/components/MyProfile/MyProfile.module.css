@@ -1,0 +1,106 @@
+/* styles.module.css */
+
+.profileRow {
+  height: 500px;
+  gap :30px;
+  
+}
+.photoCol{
+  max-height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+.profileContainer {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%
+}
+
+.profileImage {
+  width: 150px; 
+  height: 150px; 
+  border: 5px solid #fff; 
+}
+
+.profileDetails {
+  margin-top: 15px;
+}
+
+.profileDetails div {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.profileDetails a {
+  display: block;
+  color: #5c9735;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+  background-color: red;
+  cursor: pointer;
+  width: 300px;
+  text-align: center; 
+  transition: color 0.3s;
+  background-color: #f4f6f3;
+  padding: 10px;
+  border: 1px solid #f0f0f0; 
+  border-radius: 5px;
+}
+
+.logoutbutton {
+  display: block;
+  color: #5c9735;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+  background-color: red;
+  cursor: pointer;
+  width: 300px;
+  text-align: center; 
+  transition: color 0.3s;
+  background-color: #f4f6f3;
+  padding: 10px;
+  border: 1px solid #f0f0f0; 
+  border-radius: 5px;
+}
+
+.profileDetails a:hover {
+  color: #4e7d2f;
+}
+
+.formContainer {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.updateButton {
+  background-color: #5c9735;
+  border: none;
+  margin-top: 20px;
+}
+
+.updateButton:hover {
+  background-color: #4e7d2f;
+}
+
+.formCol {
+  height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textRight {
+  text-align: right;
+}

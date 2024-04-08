@@ -3,6 +3,11 @@
     height: 100px;
     object-fit: contain;
   }
+
+  .delete-icon {
+    cursor: pointer;
+  }
+  
   /* .checkbox-cell {
     display: flex;
     justify-content: center;
