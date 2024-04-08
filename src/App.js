@@ -18,7 +18,8 @@ import EditProfile from "./pages/EditProfile";
 import Wishlists from './pages/Wishlists'
 import LoginPage, {action as authAction } from './pages/LoginPage';
 import RegisterPage, {action as registerAction} from './pages/RegisterPage'
-import { action as deleteAccount } from './pages/DeleteAccount'
+import { action as deleteAccount } from './pages/DeleteAccount' 
+import NewArrivals from './pages/NewArrivals';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,8 @@ const router = createBrowserRouter([
       { path: 'products', element: <Produts />},
       { path: 'product/:id', element: <SingleProduct />},
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
+      { path: 'new-arrivals', element: <NewArrivals />},
+
     ]
   },
 ]);

@@ -1,5 +1,6 @@
 
-.single-product-container {
+
+   .single-product-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -23,6 +24,7 @@
     border-radius: 5px;
     padding: 20px;
     background-color: #f9f9f9;
+    text-align: center; 
   }
   
   .product-details h1 {
@@ -31,7 +33,7 @@
     color: #333;
   }
   
-  .product-details img {
+  .product-details img.main-product-image {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
@@ -40,77 +42,273 @@
   }
   
   .product-details p {
-    margin: 0; /* Remove margin */
+    margin: 0;
     font-size: 1.2em;
     color: #555;
   }
   
-  .product-details p.brand {
-    font-weight: bold;
+  .product-description {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
   }
   
-  .product-details p.info {
-    font-style: italic;
-  }
-  
-  .product-details p.rating {
-    color: #ff9900;
-    font-weight: bold;
-  }
-  
-  .product-details p.price {
-    font-size: 1.5em;
-    color: #009900;
-    font-weight: bold;
-  }
-  
-  .product-card {
-    position: relative;
-    height: 100%;
-  }
-  
-  .product-image {
-    height: 220px;
-    object-fit: cover;
-  }
-  
-  .product-name {
-    text-align: center;
-    margin: 0; 
-    font-size: 1.2rem;
+  .product-description h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
     color: #333;
   }
   
-  .product-price {
-    text-align: center;
-    margin: 0; 
-    font-size: 1rem;
-    color: #666;
+  .product-description p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #555;
   }
   
-  .wishlist-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+  .additional-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
   
-  .button-container {
-    margin-top: auto;
-  }
-  
-  .out-of-stock-label {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: red;
-    color: white;
-    padding: 5px;
+  .additional-image {
+    width: 150px; 
+    height: 150px; 
+    margin: 0 10px; 
     border-radius: 5px;
   }
   
-  .add-to-cart-button {
-    opacity: 0.5;
-    pointer-events: none;
+  .rating-section {
+    display: flex;
+    align-items: center; 
   }
   
+  .average-rating {
+    margin-left: 10px; 
+  }
+  
+  .star {
+    cursor: pointer;
+  }
+  
+  .star:hover {
+    color: #ffd700; 
+  }
+  
+  .review-section {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/backgroundflower1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    z-index: -1; 
+}
+
+.feedback-container {
+    z-index: 1; 
+    width: 300px;
+}
+
+
+.review-section h2 {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+  
+  .review-section textarea {
+    width: 120%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .review-section .submit-button:hover {
+    background-color: #333; 
+  }
+  
+  .review-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .review-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 2px;
+    border-radius: 8px;
+  }
+  
+  .review-comment {
+    margin-bottom: 10px;
+  }
+  
+  .review-date {
+    font-style: italic;
+  }
+  
+  .customerReviews {
+    margin-top: 40px;
+  }
+  
+  .customerReviews h2 {
+    text-align: center; 
+    margin-top: 20px; 
+  }
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    height: 100%; 
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+.single-product-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; 
+}
+
+.out-of-stock-label {
+    position: absolute;
+    top: 50%; 
+    right: 0; 
+    transform: translateY(-50%); 
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white;
+    padding: 8px 16px; 
+    border-radius: 20px 0 0 20px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1; 
+    transition: transform 0.2s ease-in-out; 
+}
+
+.out-of-stock-label:hover {
+    transform: translateY(-50%) translateX(-5px); 
+}
+
+
+.product-details {
+    margin-top: 20px; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center; 
+    position: relative; 
+}
+
+.product-details .main-product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(9, 9, 9);
+    font-size: larger;
+  }
+
+
+  
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .popup.success {
+    background-color: #f2f7f2; /* Green background for success message */
+    color: #090909; /* White text for success message */
+  }
+  
+  .popup.error {
+    background-color: #0a0a0a; 
+    color: #ffffff; 
+
+  }
+  
+  .popup p {
+    margin: 0;
+  }
+  
+  /* Fade-out animation */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+/*   
+  .fade-out {
+    animation: fadeOut 0.2s ease-in-out forwards;
+  } */

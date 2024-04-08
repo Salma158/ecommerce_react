@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -5,6 +6,9 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useRouteLoaderData, Form } from "react-router-dom";
 import CategoryDropdown from "./CategoryDropdown";
 import "./Header.css";
+
+
+
 
 function Header({ isHeroHeader }) {
   const token = useRouteLoaderData("root");
@@ -24,6 +28,13 @@ function Header({ isHeroHeader }) {
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <LinkContainer to="./new-arrivals">
+              {/* <Nav.Link>New🌷</Nav.Link> */}
+              <Nav.Link>New&nbsp;🌷</Nav.Link>
+
+              </LinkContainer>
+            </Nav>
             <Nav className="ml-auto">
               <CategoryDropdown />
               <LinkContainer to="/cart">
@@ -65,3 +76,5 @@ function Header({ isHeroHeader }) {
 }
 
 export default Header;
+
+
