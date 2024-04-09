@@ -6,7 +6,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useRouteLoaderData, Form } from "react-router-dom";
 import CategoryDropdown from "./CategoryDropdown";
 import AboutUsPage from "../pages/AboutUs";
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+// import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Header.css";
 
 
@@ -49,10 +49,10 @@ function Header({ isHeroHeader }) {
               <CategoryDropdown />
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> 
-                  {/* <i class="fa-solid fa-bag-shopping"></i> */}
+                  {/* <i className="fas fa-shopping-cart"></i>  */}
+                  <i class="fa-solid fa-bag-shopping"></i>
 
-                <LocalMallIcon />
+                {/* <LocalMallIcon /> */}
                 </Nav.Link>
               </LinkContainer>
               { <LinkContainer to="/wishlists">
