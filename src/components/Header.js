@@ -1,10 +1,11 @@
+import  React from "react";
 
-import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import { useRouteLoaderData, Form } from "react-router-dom";
 import CategoryDropdown from "./CategoryDropdown";
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Header.css";
 
 
@@ -39,7 +40,7 @@ function Header({ isHeroHeader }) {
               <CategoryDropdown />
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Cart
+                <LocalMallIcon />
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="wishlists">

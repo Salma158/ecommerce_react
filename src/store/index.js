@@ -4,6 +4,8 @@ import productsReducer from './products/slices/productsSlice';
 import categorySliceReducer from './categories/slices/categorySlice'; 
 import categoryProductsSlice from './products/slices/categoryProductsSlice';
 import categoryDetails from './categories/slices/categoryDetails';
+import cartSlice from './cart/cart'
+import shippingSlice from './shippingDetails/shippingDetails'
 import WishlistSlice from "./wishlists/wishlist-slice";
 
 const store = configureStore({
@@ -13,6 +15,8 @@ const store = configureStore({
     categories: categorySliceReducer, 
     categoryProducts: categoryProductsSlice,
     categoryDetails: categoryDetails,
+    cart: cartSlice,
+    shippingAddress: shippingSlice,
     wishlist:WishlistSlice.reducer
   },
 });
