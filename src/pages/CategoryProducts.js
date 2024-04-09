@@ -9,6 +9,7 @@ import { fetchCategoryProducts } from '../store/products/slices/categoryProducts
 import { fetchCategoryDetails } from '../store/categories/slices/categoryDetails';
 import ProductCard from '../components/ProductCard';
 import "./CategoryProducts.css"
+import flower from '../assets/images/flower.jpg'
 
 function CategoryProducts() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function CategoryProducts() {
         <br />
         <br />
         <h2>{categoryDetails.categoryname}</h2>
-        <img src={categoryDetails.image} alt={categoryDetails.categoryname} className="category-image" />
+        <img src={categoryDetails.image || flower} alt={categoryDetails.categoryname} className="category-image" />
         <p>{categoryDetails.description}</p>
       </div>
       <hr />

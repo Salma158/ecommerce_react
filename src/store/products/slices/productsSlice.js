@@ -69,4 +69,13 @@ export const fetchNewArrivals = () => async (dispatch) => {
     }
   };
 
+  export const searchProducts = (query) => async (dispatch) => {
+    dispatch(fetchProductsStart());
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/products/search/${query}`);
+      dispatch(fetchProductsSuccess(response.data));
+    } catch (error) {
+      dispatch(fetchProductsFailure(error.message));
+    }
+  };
 export default productsSlice.reducer;
