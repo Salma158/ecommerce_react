@@ -26,3 +26,10 @@
   color: #999; 
   cursor: not-allowed;
 }
+.searchbar {
+  width: 400px;
+  margin: 0 auto;
+  border: 2px solid #333; 
+  border-radius: 6px;
+
+}

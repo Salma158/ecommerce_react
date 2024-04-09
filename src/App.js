@@ -20,6 +20,9 @@ import LoginPage, {action as authAction } from './pages/LoginPage';
 import RegisterPage, {action as registerAction} from './pages/RegisterPage'
 import { action as deleteAccount } from './pages/DeleteAccount' 
 import NewArrivals from './pages/NewArrivals';
+import NotFoundPage from './pages/NotFound'; 
+import AboutUsPage from './pages/AboutUs';
+
 
 const router = createBrowserRouter([
   {
@@ -69,9 +72,15 @@ const router = createBrowserRouter([
       { path: 'product/:id', element: <SingleProduct />},
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
       { path: 'new-arrivals', element: <NewArrivals />},
+      { path: 'about-us', element: <AboutUsPage />},
+
+
+
 
     ]
   },
+  { path: '/*', element: <NotFoundPage /> },
+
 ]);
 
 function App() {
@@ -79,5 +88,6 @@ function App() {
       <RouterProvider router={router} />
   );
 }
+
 
 export default App;

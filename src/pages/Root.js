@@ -5,9 +5,12 @@ import { useEffect } from 'react';
 import { getTokenDuration } from '../util/auth';
 
 
+
 function Root(){
     const token = useLoaderData();
     const submit = useSubmit();
+
+
     useEffect(() => {
       if (!token) {
         return;
@@ -27,9 +30,12 @@ function Root(){
     }, [token, submit]);
 
 
+
     return(
         <>
         <Header />
+
+
         <Outlet />
         <Footer />
         </>
