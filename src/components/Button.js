@@ -15,6 +15,7 @@ const Button = ({ onClick, text, width, height, backgroundColor, color, disabled
     fontSize: '16px',
     fontWeight: 'bold',
     outline: 'none',
+    textDecoration: 'none',
     opacity: disabled ? 0.5 : 1,
     marginTop: marginTop || '0',
     marginLeft: marginLeft || '0',
