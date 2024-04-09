@@ -13,6 +13,7 @@ const Button = ({ onClick, text, width, height, backgroundColor, color }) => {
     fontSize: '16px',
     fontWeight: 'bold',
     outline: 'none',
+    textDecoration: 'none',
   };
 
   return (
