@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBInput, MDBTypography } from 'mdb-react-ui-kit';
-import shippingImage from '../../assets/images/flower_shipping.jpg'; // Importing the image
+import shippingImage from '../../assets/images/flower_shipping.jpg';
 import Button from '../../components/Button'
 
 function ShippingForm() {

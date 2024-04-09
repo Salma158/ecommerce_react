@@ -4,6 +4,7 @@ import { fetchCart } from "../store/cart/cart";
 import { useEffect } from "react";
 import { removeFromCart } from "../store/cart/cart";
 import { Trash } from "react-bootstrap-icons";
+import Button from "../components/Button";
 
 
 
@@ -56,7 +57,7 @@ const MyCart = () => {
                     />
                   </td>
                   <td>{item.product.productname}</td>
-                  <td>{item.product.price}</td>
+                  <td>{item.product.price} EGP</td>
                   <td>{item.product.stock <= 0 ? "Out of Stock" : "In Stock"}</td>
                   <td>
                   <button onClick={() => handleDeleteItem(item.product)}>
@@ -66,6 +67,11 @@ const MyCart = () => {
                         className="delete-icon"
                       />
                     </button>
+                    <div className="btn-group" role="group" aria-label="Basic example">
+                      <Button text="Left" backgroundColor="#007bff" />
+                      <Button text="Remove" backgroundColor="#007bff" onClick={() => handleDeleteItem(item.product)}/>
+                      <Button text="Right" backgroundColor="#007bff" />
+                    </div>
                   </td>
                 </tr>
               ))}
