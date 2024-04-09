@@ -4,7 +4,7 @@ import productsReducer from './products/slices/productsSlice';
 import categorySliceReducer from './categories/slices/categorySlice'; 
 import categoryProductsSlice from './products/slices/categoryProductsSlice';
 import categoryDetails from './categories/slices/categoryDetails';
-import wishlistReducer from './wishlists/wishlists';
+import WishlistSlice from "./wishlists/wishlist-slice";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ const store = configureStore({
     categories: categorySliceReducer, 
     categoryProducts: categoryProductsSlice,
     categoryDetails: categoryDetails,
-    wishlist: wishlistReducer,
+    wishlist:WishlistSlice.reducer
   },
 });
 

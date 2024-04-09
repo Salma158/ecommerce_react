@@ -7,9 +7,12 @@ import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { addToWishlist, removeFromWishlist } from '../store/wishlists/wishlists';
+// import { addToWishlist, removeFromWishlist } from '../store/wishlists/wishlists';
+import { addItemToWishlist, deleteWishlistItem  } from './../store/wishlists/wishlist-actions'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { wishlistActions  } from "../store/wishlists/wishlist-slice";
+
 
 // Inside your component function
 
@@ -18,19 +21,20 @@ import StarRating from "./StarRating";
 function ProductCard({ product }) {
 
   const dispatch = useDispatch();
-  const wishlist = useSelector(state => state.wishlist.wishlist);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
-    setIsInWishlist(wishlist.some(item => item._id === product._id));
-  }, [product, wishlist]);
+    setIsInWishlist(wishlistItems.some(item => item._id === product._id));
+  }, [dispatch]);
 
   const toggleWishlist = () => {
     setIsInWishlist(!isInWishlist);
     if (isInWishlist) {
-      dispatch(removeFromWishlist(product._id));
+      dispatch(deleteWishlistItem(product._id));
     } else {
-      dispatch(addToWishlist(product._id));
+      dispatch(addItemToWishlist(product._id));
     }
   };
 

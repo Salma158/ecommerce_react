@@ -139,17 +139,7 @@ function MyProfile({ profile }) {
                     />
                   </Form.Group>
                 </Col>
-                <Col>
-                  <Form.Group controlId="birthday">
-                    <Form.Label>Birthday:</Form.Label>
-                    <Form.Control
-                      type="date"
-                      value={formData.date_of_birth}
-                      onChange={handleChange}
-                      disabled={!editMode}
-                    />
-                  </Form.Group>
-                </Col>
+                
               </Row>
               <Row>
                 <Col className={styles.textRight}>

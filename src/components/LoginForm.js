@@ -1,5 +1,3 @@
-// LoginFormdemo.jsx
-
 import styles from "./LoginForm.module.css";
 import loginForm from "./../assets/images/loginForm.jpg";
 
@@ -12,11 +10,19 @@ import {
   Image,
   Form as BForm,
 } from "react-bootstrap";
-import { Form as RForm, useNavigation, Link } from "react-router-dom";
+import {
+  Form as RForm,
+  useNavigation,
+  Link,
+  useActionData,
+} from "react-router-dom";
 
 const LoginForm = () => {
+  const data = useActionData();
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
   return (
     <Container className="mt-5 mb-5">
       <Row>
@@ -26,7 +32,6 @@ const LoginForm = () => {
             <h2 className="mb-2">Welcome back</h2>
             <p className="mb-4">Please login to your Account</p>
             <BForm.Group controlId="formBasicEmail" className="mb-2">
-              <BForm.Label>Email :</BForm.Label>
               <BForm.Control
                 type="email"
                 placeholder="Enter email"
@@ -35,7 +40,6 @@ const LoginForm = () => {
             </BForm.Group>
 
             <BForm.Group controlId="formBasicPassword" className="mb-2">
-              <BForm.Label>Password :</BForm.Label>
               <BForm.Control
                 type="password"
                 placeholder="Password"
@@ -43,17 +47,36 @@ const LoginForm = () => {
               />
             </BForm.Group>
             <p className="mb-4 text-end">
-              <Link to="/forgot-password" className={`${styles["custom-link"]} ${styles["custom-link-muted"]}`}>
+              <Link
+                to="/forgot-password"
+                className={`${styles["custom-link"]} ${styles["custom-link-muted"]}`}
+              >
                 Forgot password?
               </Link>
             </p>
-            <Button
+
+            {data && data.errors && (
+              <ul className={styles["error-list"]}>
+                {Object.values(data.errors).map((err, index) => (
+                  <li key={index} className={styles["error-item"]}>
+                    <span className={styles["error-message"]}>{err}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <button
               type="submit"
-              className={styles["login-button"]}
+              style={
+                isSubmitting
+                  ? { backgroundColor: "#ccc", cursor: "not-allowed" }
+                  : null
+              }
+              className={`${styles["login-button"]} btn`}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Login"}
-            </Button>
+            </button>
 
             <p className="mt-3">
               Don't have an account yet?{" "}
@@ -69,4 +92,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
