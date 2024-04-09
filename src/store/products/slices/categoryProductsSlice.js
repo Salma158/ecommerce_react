@@ -40,5 +40,4 @@ const categoryProductsSlice = createSlice({
   },
 });
 
-// Export the reducer
 export default categoryProductsSlice.reducer;

@@ -6,7 +6,8 @@
   .hero-image {
     background-size: cover;
     background-position: center;
-    height: 550px; 
+    height: 100vh;
+    object-fit: cover;
   }
   
  

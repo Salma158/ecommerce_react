@@ -4,9 +4,10 @@ import productsReducer from './products/slices/productsSlice';
 import categorySliceReducer from './categories/slices/categorySlice'; 
 import categoryProductsSlice from './products/slices/categoryProductsSlice';
 import categoryDetails from './categories/slices/categoryDetails';
-import wishlistReducer from './wishlists/wishlists';
 import cartSlice from './cart/cart'
 import shippingSlice from './shippingDetails/shippingDetails'
+import WishlistSlice from "./wishlists/wishlist-slice";
+
 const store = configureStore({
   reducer: {
     productDetails: productDetailsReducer,
@@ -14,9 +15,9 @@ const store = configureStore({
     categories: categorySliceReducer, 
     categoryProducts: categoryProductsSlice,
     categoryDetails: categoryDetails,
-    wishlist: wishlistReducer,
     cart: cartSlice,
     shippingAddress: shippingSlice,
+    wishlist:WishlistSlice.reducer
   },
 });
 

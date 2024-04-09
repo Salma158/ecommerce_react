@@ -1,0 +1,51 @@
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+
+.form-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center; 
+}
+
+.login-button {
+  width: 100%;
+  background-color: #5c9735;
+  border: none;
+  margin-top: 20px;
+}
+
+.login-button:hover {
+  background-color: #4e7d2f;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.error-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #5c9735;
+  border: none;
+  color: white;
+}
+
+.login-button:hover {
+  background-color: #4e7d2f;
+  color: white;
+
+}

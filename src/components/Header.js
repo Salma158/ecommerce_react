@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import  React from "react";
+
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
@@ -6,6 +7,9 @@ import { useRouteLoaderData, Form } from "react-router-dom";
 import CategoryDropdown from "./CategoryDropdown";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Header.css";
+
+
+
 
 function Header({ isHeroHeader }) {
   const token = useRouteLoaderData("root");
@@ -25,6 +29,13 @@ function Header({ isHeroHeader }) {
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <LinkContainer to="./new-arrivals">
+              {/* <Nav.Link>New🌷</Nav.Link> */}
+              <Nav.Link>New&nbsp;🌷</Nav.Link>
+
+              </LinkContainer>
+            </Nav>
             <Nav className="ml-auto">
               <CategoryDropdown />
               <LinkContainer to="/cart">
@@ -48,13 +59,13 @@ function Header({ isHeroHeader }) {
                 </li>
               )}
               {!token && (
-                <Nav.Link as={NavLink} to="/auth?mode=login">
+                <Nav.Link as={NavLink} to="/login">
                   Login
                 </Nav.Link>
               )}
               {token && (
-                <Form action="/logout" method="post">
-                  <Nav.Link type="submit">Logout</Nav.Link>
+                <Form action="/logout" method="post" className="nav-link">
+                <button type="submit" className="text-decoration-none">Logout</button>
                 </Form>
               )}
             </Nav>
@@ -66,3 +77,5 @@ function Header({ isHeroHeader }) {
 }
 
 export default Header;
+
+
