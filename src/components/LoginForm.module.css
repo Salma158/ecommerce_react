@@ -1,4 +1,3 @@
-/* LoginFormdemo.module.css */
 .image-container {
   position: relative;
   text-align: center;
@@ -11,33 +10,34 @@
 
 .form-overlay {
   position: absolute;
-  text-align : start;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 10px;
+  text-align: start;
 }
 
 .login-button {
   width: 100%;
   background-color: #5c9735;
   border: none;
-  margin-top: 20px;
+  color: white;
 }
 
 .login-button:hover {
   background-color: #4e7d2f;
+  color: white;
+
 }
 
-.custom-link {
-  color: black;
-  text-decoration: none;
-  /* font-weight: bold; */
-}
+.custom-link,
 .custom-link-sign {
   color: black;
   text-decoration: none;
+}
+
+.custom-link-sign {
   font-weight: bold;
 }
 
@@ -47,4 +47,14 @@
 
 .custom-link-muted:hover {
   color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.error-list {
+  list-style-type: none;
+  padding-left: 0;
 }

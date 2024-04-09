@@ -29,7 +29,7 @@ export async function action({ request }) {
   });
 
 
-  if (response.status === 422 || response.status === 401) {
+  if (response.status === 422 || response.status === 400) {
     return response;
   }
 
