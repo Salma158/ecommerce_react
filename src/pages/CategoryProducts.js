@@ -46,7 +46,7 @@ function CategoryProducts() {
       </div>
       <hr />
       <h3>Category Products</h3>
-      <Row>
+      <Row style={{marginBottom: "25px"}}>
         {products.map(product => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <ProductCard product={product} />
