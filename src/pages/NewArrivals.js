@@ -28,9 +28,9 @@ function NewArrivals() {
 
   return (
     <Container>
-      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif',  marginTop: "auto"}}>New Arrivals</h1>
+      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif',  marginTop: "0px"}}>New Arrivals</h1>
 
-      <Row>
+      <Row style={{marginBottom: "30px"}}>
         {products && products.map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <ProductCard product={product} />
