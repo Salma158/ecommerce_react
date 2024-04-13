@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductDetails, postProductReview } from '../store/products/slices/productDetailsSlice';
+import { fetchProductDetails, fetchProductReviews, postProductReview } from '../store/products/slices/productDetailsSlice';
 import Button from '../components/Button';
 import StarRating from '../components/StarRating';
 import './SingleProduct.css';
@@ -11,7 +11,7 @@ import flower from "../assets/images/flower.jpg"
 const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { loading, product, error } = useSelector(state => state.productDetails);
+  const { loading, product, reviews, error } = useSelector(state => state.productDetails);
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -21,6 +21,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(fetchProductDetails(id));
+    dispatch(fetchProductReviews(id));
   }, [dispatch, id]);
 
   const handleRatingChange = (newRating) => {
@@ -51,6 +52,7 @@ const SingleProduct = () => {
       }
 
       await dispatch(postProductReview({ productId: id, reviewData: { rating, comment: review } }));
+      dispatch(fetchProductDetails(id));
 
       setShowSuccessPopup(true);
       setTimeout(() => setShowSuccessPopup(false), 2000); 
@@ -73,8 +75,6 @@ const SingleProduct = () => {
     return date.toLocaleString();
   };
 
-  const averageRating = product && product.average_rating ? parseFloat(product.average_rating).toFixed(1) : 0;
-
   return (
     <div className="single-product-container">
       {loading && (
@@ -90,19 +90,14 @@ const SingleProduct = () => {
         <div>
           <div className="product-details">
             <h1>{product.productname}</h1>
-    
-
             <img src={product.image || flower} alt={product.productname} className="main-product-image" />
             <p>Brand: {product.productbrand}</p>
             <p>Price: ${product.price} EGP</p>
             <p>Number of reviews:  {product.num_reviews} </p>
-
-
             <div className="rating-section">
               <StarRating rating={rating} onChange={handleRatingChange} clickable />
-              <span className="average-rating">{averageRating}</span>
+              <span className="average-rating">{product.rating}</span>
             </div>
-
             <div className="button-container">
               <Button
                 className={`add-to-cart-button ${product.stock <= 0 ? 'disabled' : ''}`}
@@ -117,20 +112,23 @@ const SingleProduct = () => {
             </div>
           </div>
           <div className="additional-images">
-    {product.images.map((image, index) => (
-      <img key={index} src={image.image} alt={`Product ${index + 1}`} className="additional-product-image" />
-    ))}
-  </div>
+            {product.images.map((image, index) => (
+              <img key={index} src={image.image} alt={`Product ${index + 1}`} className="additional-product-image" />
+            ))}
+          </div>
           <div className="product-description">
             <h2>Description</h2>
             <p>{product.productinfo}</p>
           </div>
           <div className="customerReviews">
             <h2>Customer Reviews</h2>
+
             <div className="review-cards">
-              {product.reviews.slice(0, 4).map(review => (
+              {reviews && reviews.slice(0, 4).map(review => (
                 <div key={review.id} className="review-card">
-                  <h3 className="review-card-title">{review.title}</h3>
+
+                  {/* <h3 className="review-card-title">{review.name}</h3> */}
+
                   <StarRating rating={review.rating} />
                   <p className="review-comment">{review.comment}</p>
                   <p className="review-date">{formatDate(review.createdAt)}</p>
@@ -142,10 +140,11 @@ const SingleProduct = () => {
             <div className="background-image"></div>
             <div className="feedback-container">
               <h2>Review</h2>
-              <textarea
+              <textarea className='review-text' style={{marginLeft: "-100px"}}
                 value={review}
                 onChange={handleReviewChange}
                 placeholder="Write your review here..."
+                
               />
               {showRatingError && <div className="error">Please select a rating.</div>}
               {showReviewError && <div className="error">Please provide a review.</div>}

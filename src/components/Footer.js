@@ -13,9 +13,9 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>&emsp;&emsp;&emsp;&emsp;Quick Links</h5>
             <ul className="list-unstyled" style={{marginLeft: "100px"}}>
-              <li><a href="/about-us#our-story" className="text-white">Our Story</a></li>
-              <li><a href="/about-us#our-mission" className="text-white">Our Mission</a></li>
-              <li><a href="/about-us#contact-us" className="text-white">Contact Us</a></li>
+              <li><a href="/about-us#our-story" className="text-white" style={{textDecoration: "none"}}>Our Story</a></li>
+              <li><a href="/about-us#our-mission" className="text-white" style={{textDecoration: "none"}}>Our Mission</a></li>
+              <li><a href="/about-us#contact-us" className="text-white" style={{textDecoration: "none"}}>Contact Us</a></li>
             </ul>
           </div>
           <div className="col-md-4">

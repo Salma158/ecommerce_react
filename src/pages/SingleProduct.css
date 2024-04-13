@@ -68,18 +68,7 @@
     color: #555;
   }
   
-  /* .additional-images {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
   
-  .additional-image {
-    width: 100px; 
-    height: 150px; 
-    margin: 0 10px; 
-    border-radius: 5px;
-  } */
   
   .rating-section {
     display: flex;
@@ -137,9 +126,9 @@
 
   
   .review-section textarea {
-    width: 120%;
-    height: 150px;
-    padding: 10px;
+    width: 160%;
+    height: 180px;
+    padding: 2px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -286,8 +275,8 @@
   }
   
   .popup.success {
-    background-color: #f2f7f2; /* Green background for success message */
-    color: #090909; /* White text for success message */
+    background-color: #f2f7f2; 
+    color: #090909; 
   }
   
   .popup.error {
@@ -300,7 +289,6 @@
     margin: 0;
   }
   
-  /* Fade-out animation */
   @keyframes fadeOut {
     from {
       opacity: 1;
@@ -309,10 +297,6 @@
       opacity: 0;
     }
   }
-/*   
-  .fade-out {
-    animation: fadeOut 0.2s ease-in-out forwards;
-  } */
 
   .additional-images {
     display: flex;
@@ -328,6 +312,10 @@
     margin-right: 10px;
     /* object-fit: cover;  */
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); 
+  }
+  .review-text{
+    margin-top: 80px;
+    width: 60px;
   }
   
   
