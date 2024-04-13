@@ -45,7 +45,7 @@ function CategoryProducts() {
         <p>{categoryDetails.description}</p>
       </div>
       <hr />
-      <h3>Category Products</h3>
+      <h3>{categoryDetails.categoryname} Products</h3>
       <Row style={{marginBottom: "25px"}}>
         {products.map(product => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -58,3 +58,5 @@ function CategoryProducts() {
 }
 
 export default CategoryProducts;
+
+

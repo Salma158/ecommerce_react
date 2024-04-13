@@ -140,10 +140,11 @@ const SingleProduct = () => {
             <div className="background-image"></div>
             <div className="feedback-container">
               <h2>Review</h2>
-              <textarea
+              <textarea className='review-text' style={{marginLeft: "-100px"}}
                 value={review}
                 onChange={handleReviewChange}
                 placeholder="Write your review here..."
+                
               />
               {showRatingError && <div className="error">Please select a rating.</div>}
               {showReviewError && <div className="error">Please provide a review.</div>}
