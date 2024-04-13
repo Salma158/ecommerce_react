@@ -51,28 +51,6 @@ function ForgotPasswordPopup({ show, handleClose }) {
               name="email"
             />
           </Form.Group>
-          <Form.Group controlId="newPassword" className="mb-3">
-            {/* <Form.Label>New Password:</Form.Label> */}
-            <Form.Control
-              type="password"
-              placeholder="Enter new password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              name="password"
-            />
-          </Form.Group>
-          <Form.Group controlId="confirmPassword">
-            {/* <Form.Label>Confirm New Password:</Form.Label> */}
-            <Form.Control
-              type="password"
-              placeholder="Confirm new password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              name="confirm_password"
-            />
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
