@@ -14,7 +14,6 @@ const NotFoundPage = () => {
 
   return (
     <div style={backgroundStyle}>
-      {/* Optionally, you can add some content or message */}
       <h1 style={{ color: '#fff', textAlign: 'center' }}>404 - Page Not Found</h1>
       <Link to="/">
             <Button text="Back Home" backgroundColor="#ffffff" color="#000000" marginTop="506px" marginLeft="600px" width="300px" height="50px" />

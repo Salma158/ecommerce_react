@@ -39,7 +39,6 @@ function ProductCard({ product }) {
     }
   };
 
-//   const averageRating = product && product.average_rating ? parseFloat(product.average_rating).toFixed(1) : 0;
 
   return (
     <Card className={`my-3 p-3 rounded product-card ${product.stock <= 0 ? 'out-of-stock' : ''}`}>
@@ -51,22 +50,13 @@ function ProductCard({ product }) {
           <FontAwesomeIcon icon={faHeart} color={isInWishlist ? 'red' : 'black'} />
         </div>
       )}
-      {/* <Link to={`/product/${product._id}`}>
-      <Card.Img
-  src={product.image || flower}
-  alt={product.productname}
-  className="product-image"
-/>
-
-      </Link> */}
+   
       <Link to={`/product/${product._id}`}>
   <Card.Img
     src={product.image || flower}
     alt={product.productname}
     className="product-image"
-    // Add console.log to debug
-    // onLoad={() => console.log('Image loaded successfully')}
-    // onError={() => console.log('Error loading image')}
+    
   />
 </Link>
 

@@ -105,7 +105,7 @@ const productDetailsSlice = createSlice({
       })
       .addCase(postProductReview.fulfilled, (state, action) => {
         state.loading = false;
-        state.reviews.push(action.payload); // Assuming the new review is added to the reviews array
+        state.reviews.push(action.payload); 
       })
       .addCase(postProductReview.rejected, (state, action) => {
         state.loading = false;
