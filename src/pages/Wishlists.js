@@ -4,66 +4,41 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { XCircleFill } from "react-bootstrap-icons";
 import LoadingSpinner from "./../components/LoadingSpinner";
-import { fetchWishlistItems } from "../store/wishlists/wishlist-actions";
 import { deleteWishlistItem } from "../store/wishlists/wishlist-actions";
-import { wishlistActions } from "../store/wishlists/wishlist-slice";
+import { fetchWishlist } from "../store/wishlists/wishlist-actions";
 
 const MyWishlist = () => {
   const dispatch = useDispatch();
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const loading = useSelector((state) => state.wishlist.isLoading);
 
-  const wishlistItems = useSelector((state) => state.wishlist.items);
-  const isLoading = useSelector((state) => state.wishlist.isLoading);
-  const next = useSelector((state) => state.wishlist.next);
-  const previous = useSelector((state) => state.wishlist.previous);
+  useEffect( () => {
+     dispatch(fetchWishlist())
+  },[loading])
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    dispatch(fetchWishlistItems());
-  }, [dispatch]);
+  // const next = useSelector((state) => state.wishlist.next);
+  // const previous = useSelector((state) => state.wishlist.previous);
 
-  const nextPage = () => {
-    setCurrentPage(currentPage + 1);
-    dispatch(fetchWishlistItems(next));
-  };
 
-  const prevPage = () => {
-    setCurrentPage(currentPage - 1);
-    dispatch(fetchWishlistItems(previous));
-  };
-
-  const handleDeleteItem = (product) => {
-    try {
-      const updatedWishlistItems = wishlistItems.filter(
-        (item) => item._id !== product._id
-      );
-      dispatch(
-        wishlistActions.getWishlist({
-          items: updatedWishlistItems,
-          isLoading: true,
-        })
-      );
-      dispatch(deleteWishlistItem(product._id));
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleDeleteItem = (id) => {
+      dispatch(deleteWishlistItem(id));
   };
 
   const [isChecked, setIsChecked] = useState({});
 
-  if (isLoading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 
   return (
     <>
-      <div className={styles.outerContainer}>
+       <div className={styles.outerContainer}>
         <div className={styles.container}>
           <div className={styles.headingContainer}>
             <h2 className={styles.heading}>Wishlist</h2>
           </div>
-          {wishlistItems.length > 0 ? (
+          {wishlist.length > 0 ? ( 
             <>
               <table className={styles["wishlist-table"]}>
                 <thead>
@@ -77,7 +52,7 @@ const MyWishlist = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {wishlistItems.map((product) => (
+                  {wishlist.map((product) => (
                     <tr key={product._id}>
                       <td className="checkbox-cell">
                         <input
@@ -101,9 +76,11 @@ const MyWishlist = () => {
                       </td>
                       <td>{product.productname}</td>
                       <td>{product.price}</td>
-                      <td>{product.stock <= 0 ? "Out of Stock" : "In Stock"}</td>
                       <td>
-                        <button onClick={() => handleDeleteItem(product)}>
+                        {product.stock <= 0 ? "Out of Stock" : "In Stock"}
+                      </td>
+                      <td>
+                        <button onClick={() => handleDeleteItem(product._id)}>
                           <XCircleFill
                             size={24}
                             color="gray"
@@ -114,34 +91,38 @@ const MyWishlist = () => {
                     </tr>
                   ))}
                 </tbody>
-              </table>
-              <div className="pagination-container">
+              </table> 
+              
+{/* <div className="pagination-container">
                 <button
                   className="pagination-button"
                   onClick={prevPage}
-                  disabled={currentPage === 1}
+                  disabled={previous === null}
                 >
                   Previous
                 </button>
-                <span>
-                  {currentPage} / {totalPages}
+                <span> 
+               
                 </span>
                 <button
                   className="pagination-button"
                   onClick={nextPage}
-                  disabled={currentPage === totalPages || totalPages === 0}
+                   disabled={next === null}
                 >
                   Next
                 </button>
-              </div>
-            </>
+              </div> */}
+
+              
+              </>
           ) : (
             <div>No products in your wishlist yet</div>
           )}
-        </div>
-      </div>
-    </>
-  );
-};
+          </div>
+          </div>
+          </>)
+}
+    {/* {currentPage} / {totalPages}  */}
+
 
 export default MyWishlist;

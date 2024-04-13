@@ -22,7 +22,7 @@ import { action as deleteAccount } from './pages/DeleteAccount'
 import NewArrivals from './pages/NewArrivals';
 import NotFoundPage from './pages/NotFound'; 
 import AboutUsPage from './pages/AboutUs';
-
+import ContactUs from './pages/ContactIs'
 
 const router = createBrowserRouter([
   {
@@ -74,10 +74,7 @@ const router = createBrowserRouter([
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
       { path: 'new-arrivals', element: <NewArrivals />},
       { path: 'about-us', element: <AboutUsPage />},
-
-
-
-
+      { path: 'contact-us' , element: <ContactUs />}
     ]
   },
   { path: '/*', element: <NotFoundPage /> },

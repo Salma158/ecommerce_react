@@ -30,23 +30,3 @@ export async function loader() {
     return response;
   }
 }
-
-// export async function action({ params, request }) {
-//   const token = getAuthToken();
-//   const response = await fetch("http://localhost:8000/users/profiles/", {
-//     method: request.method,
-//     headers: {
-//     Authorization: "Bearer " + token
-//     }
-//   });
-
-//   if (!response.ok) {
-//     throw json(
-//       { message: "Could not modify user profile." },
-//       {
-//         status: 500,
-//       }
-//     );
-//   }
-//   return redirect("/");
-// }

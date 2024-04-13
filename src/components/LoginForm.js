@@ -1,7 +1,6 @@
 import styles from "./LoginForm.module.css";
 import loginForm from "./../assets/images/loginForm.jpg";
-
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -17,11 +16,19 @@ import {
   useActionData,
 } from "react-router-dom";
 
+import ForgotPasswordPopup from './ForgotPassword'
+
 const LoginForm = () => {
   const data = useActionData();
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
+  const [showPasswordPopup, setShowPasswordPopup] = useState(false);
+
+  const handleForgotPasswordPopup = () => {
+    setShowPasswordPopup(!showPasswordPopup);
+  };
 
   return (
     <Container className="mt-5 mb-5">
@@ -48,7 +55,7 @@ const LoginForm = () => {
             </BForm.Group>
             <p className="mb-4 text-end">
               <Link
-                to="/forgot-password"
+                onClick={handleForgotPasswordPopup}
                 className={`${styles["custom-link"]} ${styles["custom-link-muted"]}`}
               >
                 Forgot password?
@@ -87,6 +94,10 @@ const LoginForm = () => {
           </RForm>
         </Col>
       </Row>
+      <ForgotPasswordPopup
+        show={showPasswordPopup}
+        handleClose={handleForgotPasswordPopup}
+      />
     </Container>
   );
 };

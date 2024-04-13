@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Container, Row, Col, Image, Form, Button, Nav } from "react-bootstrap";
 import styles from "./MyProfile.module.css";
 import { getAuthToken } from "../../util/auth";
-import { Form as RForm } from "react-router-dom"
+import { Form as RForm } from "react-router-dom";
 import ChangePasswordPopup from "./../ChangePasswordPopup";
+import { useNavigate } from 'react-router-dom';
+import { json } from "react-router-dom";
+
 
 function MyProfile({ profile }) {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: profile.username,
     email: profile.email,
@@ -16,8 +21,8 @@ function MyProfile({ profile }) {
   });
 
   const [showPasswordPopup, setShowPasswordPopup] = useState(false);
-
   const [editMode, setEditMode] = useState(false);
+  const [data, setErrorData] = useState(null);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -33,10 +38,17 @@ function MyProfile({ profile }) {
         body: JSON.stringify(formData),
       });
 
+      if (response.status === 422 || response.status === 400) {
+        const errorResponse = await response.json(); // Get error response data
+        setErrorData(errorResponse); // Store error response data in state
+        return; // Stop further execution
+      }
+
       if (!response.ok) {
         throw new Error("Could not update user profile.");
       }
-      setEditMode(!editMode)
+
+      setEditMode(!editMode);
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -54,20 +66,65 @@ function MyProfile({ profile }) {
     setShowPasswordPopup(!showPasswordPopup);
   };
 
+  const handleDeleteAccount = async (event) => {
+    event.preventDefault();
+    const confirmation = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+    if (!confirmation) {
+      return;
+    }
+    const token = getAuthToken();
+    const url = "http://localhost:8000/users/profiles/";
+  
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Could not delete user.");
+      }
+      console.log("deleted")
+  
+      localStorage.removeItem("token");
+      localStorage.removeItem("expiration");
+      navigate('/');
+    } catch (error) {
+      console.error("Error deleting account:", error);
+    }
+  };
+
   return (
     <Container fluid>
-      <Row className={`${styles.profileRow} justify-content-center align-items-stretch mt-5`}>
+      <Row
+        className={`${styles.profileRow} justify-content-center align-items-stretch mt-5`}
+      >
         <Col md={4} xs={12} className={styles.photoCol}>
           <div className={styles.profileContainer}>
-            <Image src={profile.image} className={styles.profileImage} roundedCircle />
+            <Image
+              src={profile.image}
+              className={styles.profileImage}
+              roundedCircle
+            />
             <div className={styles.profileDetails}>
-              <div>{profile.first_name} {profile.last_name}</div>
+              <div>
+                {profile.first_name} {profile.last_name}
+              </div>
               <Nav.Link onClick={handlePasswordPopup}>Change Password</Nav.Link>
-              <RForm action="/deleteaccount" method="post" className="nav-link">
-              <button type="submit" className={styles.logoutbutton}  >Delete Account</button>
-              </RForm>
+              <Form className="nav-link">
+                <button type="submit" className={styles.logoutbutton} onClick={handleDeleteAccount}>
+                  Delete Account
+                </button>
+              </Form>
               <RForm action="/logout" method="post" className="nav-link">
-              <button type="submit" className={styles.logoutbutton} >Logout</button>
+                <button type="submit" className={styles.logoutbutton}>
+                  Logout
+                </button>
               </RForm>
             </div>
           </div>
@@ -77,7 +134,7 @@ function MyProfile({ profile }) {
             <Form onSubmit={handleFormSubmit}>
               <Row className="mb-2">
                 <Col>
-                  <Form.Group controlId="firstname">
+                  <Form.Group controlId="first_name">
                     <Form.Label>First Name:</Form.Label>
                     <Form.Control
                       type="text"
@@ -90,7 +147,7 @@ function MyProfile({ profile }) {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="lastname">
+                  <Form.Group controlId="last_name">
                     <Form.Label>Last Name:</Form.Label>
                     <Form.Control
                       type="text"
@@ -128,7 +185,7 @@ function MyProfile({ profile }) {
 
               <Row className="mb-2">
                 <Col>
-                  <Form.Group controlId="phone">
+                  <Form.Group controlId="phone_number">
                     <Form.Label>Phone Number:</Form.Label>
                     <Form.Control
                       type="tel"
@@ -138,14 +195,26 @@ function MyProfile({ profile }) {
                       disabled={!editMode}
                     />
                   </Form.Group>
+                  {data && data.phone_number && (
+                    <ul className={styles["error-list"]}>
+                      {Object.values(data.phone_number).map((err, index) => (
+                        <li key={index} className={styles["error-item"]}>
+                          <span className={styles["error-message"]}>{err}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </Col>
-                
               </Row>
               <Row>
                 <Col className={styles.textRight}>
                   {editMode ? (
                     <>
-                      <Button variant="secondary" className={styles.updateButton} onClick={toggleEditMode}>
+                      <Button
+                        variant="secondary"
+                        className={styles.updateButton}
+                        onClick={toggleEditMode}
+                      >
                         Cancel
                       </Button>
                       <Button
@@ -172,7 +241,10 @@ function MyProfile({ profile }) {
           </div>
         </Col>
       </Row>
-      <ChangePasswordPopup show={showPasswordPopup} handleClose={handlePasswordPopup} />
+      <ChangePasswordPopup
+        show={showPasswordPopup}
+        handleClose={handlePasswordPopup}
+      />
     </Container>
   );
 }

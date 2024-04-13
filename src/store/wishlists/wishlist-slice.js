@@ -1,38 +1,58 @@
-// const { createSlice } = require('@reduxjs/toolkit');
-import { createSlice } from '@reduxjs/toolkit';
-const WishlistSlice = createSlice({
-    name:'wishlist',
-    initialState:{
-        items: [],
-        isLoading:true,
-        next:null,
-        previous:null
-        
-    },
-    reducers:{
-        getWishlist(state,actions) {
-            state.items = actions.payload.items;
-            state.isLoading = actions.payload.isLoading;
-            state.next = actions.payload.next;
-            state.previous =actions.payload.previous;
-        },
-        deleteFromWishlistR(state,action) {
-            state.items = state.items.filter(item=> item.id !== action.payload.id);
-            state.isLoading = action.payload.isLoading;
-        },
-        addToWishlistR(state,action) {
-            const product = action.payload.product;
-            const id = action.payload.id;
-            state.items.push({
-                id,
-                product,
-            })
-        },
-        setLoading(state, action) {
-            state.isLoading = action.payload;
-          }
-    }
-})
+import {
+  fetchWishlist,
+  deleteWishlistItem,
+  addItemToWishlist,
+} from "./wishlist-actions";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const wishlistActions = WishlistSlice.actions;
-export default WishlistSlice;
+const wishlistSlice = createSlice({
+  name: "wishlist",
+  initialState: {
+    wishlist: [],
+    error: null,
+    loading: false,
+    next: null,
+    previous: null,
+    isFetched: false,
+  },
+  reducers: { },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchWishlist.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchWishlist.fulfilled, (state, action) => {
+        state.wishlist = action.payload.wishlist[0].product_details.results;
+        state.next = action.payload.wishlist[0].product_details.next;
+        state.previous = action.payload.wishlist[0].product_details.previous;
+        state.loading = false;
+        state.isFetched = true;
+      })
+      .addCase(fetchWishlist.rejected, (state, action) => {
+        state.error = action.payload.error;
+        state.loading = false;
+      })
+      .addCase(deleteWishlistItem.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteWishlistItem.fulfilled, (state, action) => {
+        state.wishlist = state.wishlist.filter(
+          (item) => item._id !== action.payload.id
+        );
+        state.loading = false;
+      })
+      .addCase(deleteWishlistItem.rejected, (state, action) => {
+        state.error = action.payload.error;
+        state.loading = false;
+      })
+      .addCase(addItemToWishlist.fulfilled, (state, action) => {
+        state.wishlist.push(action.payload);
+      })
+      .addCase(addItemToWishlist.rejected, (state, action) => {
+        state.error = action.payload.error;
+      });
+  },
+});
+
+export const { setWishlist } = wishlistSlice.actions;
+export default wishlistSlice.reducer;
