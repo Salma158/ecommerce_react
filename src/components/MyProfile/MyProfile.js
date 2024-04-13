@@ -4,9 +4,8 @@ import styles from "./MyProfile.module.css";
 import { getAuthToken } from "../../util/auth";
 import { Form as RForm } from "react-router-dom";
 import ChangePasswordPopup from "./../ChangePasswordPopup";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { json } from "react-router-dom";
-
 
 function MyProfile({ profile }) {
   const navigate = useNavigate();
@@ -76,7 +75,7 @@ function MyProfile({ profile }) {
     }
     const token = getAuthToken();
     const url = "http://localhost:8000/users/profiles/";
-  
+
     try {
       const response = await fetch(url, {
         method: "DELETE",
@@ -85,15 +84,15 @@ function MyProfile({ profile }) {
           Authorization: "Bearer " + token,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error("Could not delete user.");
       }
-      console.log("deleted")
-  
+      console.log("deleted");
+
       localStorage.removeItem("token");
       localStorage.removeItem("expiration");
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error("Error deleting account:", error);
     }
@@ -117,7 +116,11 @@ function MyProfile({ profile }) {
               </div>
               <Nav.Link onClick={handlePasswordPopup}>Change Password</Nav.Link>
               <Form className="nav-link">
-                <button type="submit" className={styles.logoutbutton} onClick={handleDeleteAccount}>
+                <button
+                  type="submit"
+                  className={styles.logoutbutton}
+                  onClick={handleDeleteAccount}
+                >
                   Delete Account
                 </button>
               </Form>
@@ -209,7 +212,7 @@ function MyProfile({ profile }) {
               <Row>
                 <Col className={styles.textRight}>
                   {editMode ? (
-                    <>
+                    <div>
                       <Button
                         variant="secondary"
                         className={styles.updateButton}
@@ -225,7 +228,7 @@ function MyProfile({ profile }) {
                       >
                         Submit
                       </Button>
-                    </>
+                    </div>
                   ) : (
                     <Button
                       variant="primary"

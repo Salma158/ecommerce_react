@@ -15,16 +15,16 @@ const wishlistSlice = createSlice({
     previous: null,
     isFetched: false,
   },
-  reducers: { },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchWishlist.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchWishlist.fulfilled, (state, action) => {
-        state.wishlist = action.payload.wishlist[0].product_details.results;
-        state.next = action.payload.wishlist[0].product_details.next;
-        state.previous = action.payload.wishlist[0].product_details.previous;
+        state.wishlist = action.payload.wishlist[0]?.product_details.results || [];
+        state.next = action.payload.wishlist[0]?.product_details.next;
+        state.previous = action.payload.wishlist[0]?.product_details.previous;
         state.loading = false;
         state.isFetched = true;
       })

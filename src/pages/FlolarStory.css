@@ -1,6 +1,6 @@
 /* FloralStory.css */
 
-.floral-story-container {
+ .floral-story-container {
     margin-top: 150px;
     display: flex;
     flex-direction: row;
@@ -8,17 +8,20 @@
     align-items: center;
     margin-bottom: 50px;
   }
+   
   
   .floral-story-image {
     flex: 1;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: #f9f9f9;
+
   }
   
   .floral-story-image img {
     max-width: 100%;
+    width: 500px;
     height: auto;
     border-radius: 20px;
   }

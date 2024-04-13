@@ -3,10 +3,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-export const fetchWishlist = createAsyncThunk("fetchWishlist", async () => {
+export const fetchWishlist = createAsyncThunk("fetchWishlist", async (page = 1) => {
   try {
     const token = getAuthToken();
-    const response = await axios.get("http://localhost:8000/wishlists/", {
+    const response = await axios.get(`http://localhost:8000/wishlists/?page=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

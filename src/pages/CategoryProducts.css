@@ -1,4 +1,4 @@
-.container {
+ .container {
     margin-top: 40px;
   }
   
@@ -14,18 +14,20 @@
   }
   
   .category-details p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #666;
     line-height: 1.6;
   }
   
   .category-image {
-    max-width: 100%;
-    height: auto;
+    max-width: 120%;
+    width: 300px;
+    height: 360px;
     margin-top: 30px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
   }
   
   .category-image:hover {
@@ -95,3 +97,10 @@
 
 
    
+
+   
+      
+       
+    
+      
+      

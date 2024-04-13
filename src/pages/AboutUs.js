@@ -1,5 +1,5 @@
 import React from 'react';
-import FlowerImage from '../assets/images/flower2.jpg'; // Import your flower background image
+import FlowerImage from '../assets/images/flower2.jpg'; 
 
 import './AboutUsPage.css';
 const AboutUsPage = () => {

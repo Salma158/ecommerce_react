@@ -49,6 +49,22 @@ export const postProductReview = createAsyncThunk(
   }
 );
 
+export const fetchProductReviews = createAsyncThunk(
+  'productDetails/fetchProductReviews',
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/products/${productId}/reviews/`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch product reviews');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const productDetailsSlice = createSlice({
   name: 'productDetails',
   initialState: {
@@ -71,16 +87,25 @@ const productDetailsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(fetchProductReviews.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProductReviews.fulfilled, (state, action) => {
+        state.loading = false;
+        state.reviews = action.payload;
+      })
+      .addCase(fetchProductReviews.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(postProductReview.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(postProductReview.fulfilled, (state, action) => {
         state.loading = false;
-        state.product = {
-          ...state.product,
-          reviews: [...state.product.reviews, action.payload],
-        };
+        state.reviews.push(action.payload); 
       })
       .addCase(postProductReview.rejected, (state, action) => {
         state.loading = false;
@@ -88,7 +113,8 @@ const productDetailsSlice = createSlice({
       });
   },
 });
-
 export const productDetailsSelector = (state) => state.productDetails;
-export const productSelector = (state) => state.productDetails.product; 
+export const productSelector = (state) => state.productDetails.product;
+export const reviewsSelector = (state) => state.productDetails.reviews;
+
 export default productDetailsSlice.reducer;

@@ -5,7 +5,7 @@ const Button = ({ onClick, text, width, height, backgroundColor, color, disabled
   const buttonStyle = {
     width: width || 'auto',
     height: height || 'auto',
-    textDecoration: 'none', // Corrected property name
+    textDecoration: 'none', 
     backgroundColor: backgroundColor || '#007bff',
     color: color || '#ffffff',
     border: 'none',
@@ -19,7 +19,6 @@ const Button = ({ onClick, text, width, height, backgroundColor, color, disabled
     opacity: disabled ? 0.5 : 1,
     marginTop: marginTop || '0',
     marginLeft: marginLeft || '0',
-
   };
 
   return (

@@ -35,8 +35,9 @@ function Root(){
         <>
         <Header />
 
-
+         
         <Outlet />
+
         <Footer />
         </>
     )

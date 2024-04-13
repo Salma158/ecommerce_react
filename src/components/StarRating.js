@@ -38,7 +38,7 @@ StarRating.propTypes = {
 StarRating.defaultProps = {
   onChange: null,
   clickable: false,
-  color: 'black', // Default color set to black
+  color: 'black', 
 };
 
 export default StarRating;
