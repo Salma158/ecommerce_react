@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { addItemToWishlist, deleteWishlistItem  } from './../store/wishlists/wishlist-actions'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { wishlistActions  } from "../store/wishlists/wishlist-slice";
+import {addToCart} from './../store/cart/cart'
 
 
 // Inside your component function
@@ -21,8 +21,8 @@ import StarRating from "./StarRating";
 function ProductCard({ product }) {
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cart);
   const wishlistItems = useSelector((state) => state.wishlist.items);
-
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
@@ -36,6 +36,10 @@ function ProductCard({ product }) {
     } else {
       dispatch(addItemToWishlist(product._id));
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product._id));
   };
 
   const averageRating = product && product.average_rating ? parseFloat(product.average_rating).toFixed(1) : 0;
@@ -70,6 +74,7 @@ function ProductCard({ product }) {
         </div>
         <div className="button-container">
           <Button
+            onClick={handleAddToCart} // Call handleAddToCart function on click
             className={`add-to-cart-button ${product.stock <= 0 ? 'out-of-stock' : ''}`}
             text="Add to Cart"
             width="100%"

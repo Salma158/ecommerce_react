@@ -15,11 +15,12 @@ import { loader as profileDetailsLoader } from "./pages/ProfileDetails";
 import Wishlists from './pages/Wishlists'
 import MyCart from './pages/Cart';
 import ShippingForm from './pages/ShippingForm/ShippingForm';
-
 import LoginPage, {action as authAction } from './pages/LoginPage';
 import RegisterPage, {action as registerAction} from './pages/RegisterPage'
 import { action as deleteAccount } from './pages/DeleteAccount' 
 import NewArrivals from './pages/NewArrivals';
+import Orders from './pages/UserOrders/UserOrders';
+import Order from './pages/OrderDetails/OrderDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,8 +41,11 @@ const router = createBrowserRouter([
           // { path: "edit", element: <EditProfile />, action: editProfileAction}
         ]
       },
-      { path: "cart", element: <MyCart /> },
+      { path: "cart", element: <MyCart />, loader: checkAuthLoader  },
       { path: "address", element: <ShippingForm /> },
+      { path: "orders", element: <Orders/>},
+      { path: "order-details/:orderId", element: <Order/>},
+      //{ path: "payment", element: <Payment/> },
       {
         path: "login",
         element: <LoginPage />,
@@ -80,3 +84,4 @@ function App() {
 }
 
 export default App;
+

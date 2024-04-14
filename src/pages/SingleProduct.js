@@ -6,6 +6,7 @@ import { fetchProductDetails, postProductReview } from '../store/products/slices
 import Button from '../components/Button';
 import StarRating from '../components/StarRating';
 import './SingleProduct.css';
+import {addToCart} from './../store/cart/cart'
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -21,6 +22,11 @@ const SingleProduct = () => {
   useEffect(() => {
     dispatch(fetchProductDetails(id));
   }, [dispatch, id]);
+
+  const cartItems = useSelector((state) => state.cart.cart);
+  const handleAddToCart = () => {
+    dispatch(addToCart(product._id));
+  };
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
@@ -71,6 +77,7 @@ const SingleProduct = () => {
     const date = new Date(dateString);
     return date.toLocaleString();
   };
+  
 
   const averageRating = product && product.average_rating ? parseFloat(product.average_rating).toFixed(1) : 0;
 
@@ -101,6 +108,7 @@ const SingleProduct = () => {
             <div className="button-container">
               <Button
                 className={`add-to-cart-button ${product.stock <= 0 ? 'disabled' : ''}`}
+                onClick={handleAddToCart}
                 text="Add to Cart"
                 width="100%"
                 height="40px"

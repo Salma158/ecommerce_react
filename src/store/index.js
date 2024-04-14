@@ -8,6 +8,8 @@ import cartSlice from './cart/cart'
 import shippingSlice from './shippingDetails/shippingDetails'
 import WishlistSlice from "./wishlists/wishlist-slice";
 
+import orderSlice from './order/order';
+
 const store = configureStore({
   reducer: {
     productDetails: productDetailsReducer,
@@ -17,7 +19,8 @@ const store = configureStore({
     categoryDetails: categoryDetails,
     cart: cartSlice,
     shippingAddress: shippingSlice,
-    wishlist:WishlistSlice.reducer
+    wishlist:WishlistSlice.reducer,
+    order: orderSlice
   },
 });
 
