@@ -69,7 +69,7 @@ function ChangePasswordPopup({ show, handleClose }) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleSubmit} text="Submit" />
+        <Button variant="primary" onClick={handleSubmit} text="Submit" backgroundColor="#000000" />
       </Modal.Footer>
     </Modal>
   );
