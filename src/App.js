@@ -23,7 +23,7 @@ import NewArrivals from './pages/NewArrivals';
 import NotFoundPage from './pages/NotFound'; 
 import AboutUsPage from './pages/AboutUs';
 import ContactUs from './pages/ContactIs'
-
+import ResetPassword from './pages/resetPassword';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,7 +74,8 @@ const router = createBrowserRouter([
       { path: 'categories/:categoryId/products', element: <CategoryProducts /> },
       { path: 'new-arrivals', element: <NewArrivals />},
       { path: 'about-us', element: <AboutUsPage />},
-      { path: 'contact-us' , element: <ContactUs />}
+      { path: 'contact-us' , element: <ContactUs />},
+      { path: 'reset-password', element: <ResetPassword />}
     ]
   },
   { path: '/*', element: <NotFoundPage /> },

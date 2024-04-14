@@ -54,15 +54,6 @@ export const addItemToWishlist = createAsyncThunk(
           }
         }
       );
-      // const payload = { product: productId }; 
-      // const response = await fetch('http://localhost:8000/wishlists/', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify(payload),
-      // });
       return product;
     } catch (error) {
       return { error: error.message };

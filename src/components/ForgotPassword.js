@@ -4,36 +4,31 @@ import { getAuthToken } from "../util/auth";
 import Button from "./Button";
 
 function ForgotPasswordPopup({ show, handleClose }) {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = getAuthToken();
 
     const data = {
-      password: password,
-      confirm_password: confirmPassword,
+      email: email,
     };
 
     try {
-      const response = await fetch("http://localhost:8000/users/profiles/", {
-        method: "PATCH",
+      const response = await fetch("http://localhost:8000/users/forgetpassword/", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
         },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        throw new Error("Could not change password.");
+        throw new Error("Could not request password reset."); 
       }
+      console.log("Password reset request successful.");
     } catch (error) {
-      console.error("Error changing the password:", error);
+      console.error("Error requesting password reset:", error);
     }
-    setPassword("");
-    setConfirmPassword("");
     handleClose();
   };
 
@@ -49,6 +44,8 @@ function ForgotPasswordPopup({ show, handleClose }) {
               type="email"
               placeholder="Enter email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
         </Form>
