@@ -6,7 +6,7 @@ import axios from "axios";
 export const fetchWishlist = createAsyncThunk("fetchWishlist", async (page = 1) => {
   try {
     const token = getAuthToken();
-    const response = await axios.get(`http://localhost:8000/wishlists/?page=${page}`, {
+    const response = await axios.get(`https://ecommerce-django-ittf.onrender.com/wishlists/?page=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,7 +23,7 @@ export const deleteWishlistItem = createAsyncThunk(
     try {
       const token = getAuthToken();
       await axios.delete(
-        `http://localhost:8000/wishlists/${id}/`,
+        `https://ecommerce-django-ittf.onrender.com/wishlists/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ export const addItemToWishlist = createAsyncThunk(
       const payload = { product : product._id }
       console.log(product._id)
       await axios.post(
-        "http://localhost:8000/wishlists/",
+        "https://ecommerce-django-ittf.onrender.com/wishlists/",
         payload,
         {
           headers: {

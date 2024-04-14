@@ -6,7 +6,7 @@ export const fetchCart = createAsyncThunk(
   'cart/cartlist',
   async () => {
     const token = getAuthToken();
-    const response = await axios.get('http://localhost:8000/cart/', {
+    const response = await axios.get('https://ecommerce-django-ittf.onrender.com/cart/', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,7 +21,7 @@ const cartSlice = createSlice({
   initialState: {
     loading: true,
     cart: [],
-    totalQuantity: 0, // Add a new state to hold the total quantity
+    totalQuantity: 0,
     error: ''
   },
   reducers: {},
@@ -80,7 +80,7 @@ export const removeFromCart = createAsyncThunk(
   'cart/removeFromCart',
   async (productId) => {
     const token = getAuthToken();
-    await axios.delete(`http://localhost:8000/cart/${productId}/delete`, {
+    await axios.delete(`https://ecommerce-django-ittf.onrender.com/cart/${productId}/delete`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -93,7 +93,7 @@ export const updateCart = createAsyncThunk(
   'cart/updateCart',
   async ({ productId, actionType }) => {
     const token = getAuthToken();
-    await axios.patch(`http://localhost:8000/cart/${productId}/update`, { action: actionType }, {
+    await axios.patch(`https://ecommerce-django-ittf.onrender.com/cart/${productId}/update`, { action: actionType }, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -106,12 +106,12 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (productId) => {
     const token = getAuthToken();
-    await axios.post('http://localhost:8000/cart/', { product: productId }, {
+    await axios.post('https://ecommerce-django-ittf.onrender.com/cart/', { product: productId }, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    return productId; // Return the productId added to the cart
+    return productId;
   }
 );
 

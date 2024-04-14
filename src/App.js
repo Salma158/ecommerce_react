@@ -1,30 +1,27 @@
 import { createBrowserRouter , RouterProvider} from 'react-router-dom';
-//import { Container } from 'react-bootstrap'
-import Home from './pages/Home';
-import { action as logoutAction } from './pages/Logout';
+import Home from './pages/Home/Home';
+import { action as logoutAction } from './pages/UserProfile/Logout';
 import Root from './pages/Root'
 import Error from './pages/Error';
-import SingleProduct from './pages/SingleProduct';
-import Produts from './pages/Products'
+import SingleProduct from './pages/Products/SingleProduct';
+import Produts from './pages/Products/Products'
 import { checkAuthLoader, tokenLoader } from './util/auth';
-import CategoryProducts from './pages/CategoryProducts';
-import ProfileDetailPage from "./pages/ProfileDetails";
-import { loader as profileDetailsLoader } from "./pages/ProfileDetails";
-// import { action as accountAction } from './pages/ProfileDetails'
-// import { action as updateProfileAction } from './components/MyProfile/MyProfile'
-import Wishlists from './pages/Wishlists'
-import MyCart from './pages/Cart';
+import CategoryProducts from './pages/NavbarPages/CategoryProducts';
+import ProfileDetailPage from "./pages/UserProfile/ProfileDetails";
+import { loader as profileDetailsLoader } from "./pages/UserProfile/ProfileDetails";
+import Wishlists from './pages/NavbarPages/Wishlists'
+import MyCart from './pages/Cart/Cart';
 import ShippingForm from './pages/ShippingForm/ShippingForm';
-import LoginPage, {action as authAction } from './pages/LoginPage';
-import RegisterPage, {action as registerAction} from './pages/RegisterPage'
-import { action as deleteAccount } from './pages/DeleteAccount' 
-import NewArrivals from './pages/NewArrivals';
+import LoginPage, {action as authAction } from './pages/UserProfile/LoginPage';
+import RegisterPage, {action as registerAction} from './pages/UserProfile/RegisterPage'
+import { action as deleteAccount } from './pages/UserProfile/DeleteAccount' 
+import NewArrivals from './pages/NavbarPages/NewArrivals';
 import Orders from './pages/UserOrders/UserOrders';
 import Order from './pages/OrderDetails/OrderDetails';
 import NotFoundPage from './pages/NotFound'; 
-import AboutUsPage from './pages/AboutUs';
-import ContactUs from './pages/ContactIs'
-import ResetPassword from './pages/resetPassword';
+import AboutUsPage from './pages/NavbarPages/AboutUs';
+import ContactUs from './pages/NavbarPages/ContactIs'
+import ResetPassword from './pages/UserProfile/resetPassword';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,17 +36,13 @@ const router = createBrowserRouter([
         loader: profileDetailsLoader,
         id: 'profile-details',
         children: [
-          { index: true,  element: <ProfileDetailPage />,
-          //  action: updateProfileAction
-          },
-          // { path: "edit", element: <EditProfile />, action: editProfileAction}
+          { index: true,  element: <ProfileDetailPage />}
         ]
       },
       { path: "cart", element: <MyCart />, loader: checkAuthLoader  },
       { path: "address", element: <ShippingForm /> },
       { path: "orders", element: <Orders/>},
       { path: "order-details/:orderId", element: <Order/>},
-      //{ path: "payment", element: <Payment/> },
       {
         path: "login",
         element: <LoginPage />,

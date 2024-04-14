@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData, useSubmit , useLocation } from "react-router-dom"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Header from "./../components/Navbar/Header"
+import Footer from "./../components/Footer"
 import { useEffect } from 'react';
 import { getTokenDuration } from '../util/auth';
 

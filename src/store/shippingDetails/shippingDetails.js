@@ -7,11 +7,9 @@ export const addShippingAddress = createAsyncThunk(
   'shipping/addShippingAddress',
   async (formData, { rejectWithValue }) => {
     try {
-       // console.log("inside slicer")
       const token = getAuthToken();
-      const response = await axios.post('http://localhost:8000/address/', formData, {
+      const response = await axios.post('https://ecommerce-django-ittf.onrender.com/address/', formData, {
         headers: {
-          //'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       });

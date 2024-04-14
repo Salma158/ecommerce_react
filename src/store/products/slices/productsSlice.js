@@ -1,4 +1,3 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -40,7 +39,7 @@ export const { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, s
 export const fetchProducts = (page = 1) => async (dispatch) => {
   dispatch(fetchProductsStart());
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/products?page=${page}`);
+    const response = await axios.get(`https://ecommerce-django-ittf.onrender.com/api/products?page=${page}`);
     dispatch(fetchProductsSuccess(response.data.results));
     dispatch(setTotalPages(response.data.total_pages));
     dispatch(setCurrentPage(page));
@@ -52,7 +51,7 @@ export const fetchProducts = (page = 1) => async (dispatch) => {
 export const fetchTopProducts = () => async (dispatch) => {
   dispatch(fetchProductsStart());
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/products/top/');
+    const response = await axios.get('https://ecommerce-django-ittf.onrender.com/api/products/top/');
     dispatch(fetchProductsSuccess(response.data)); 
   } catch (error) {
     dispatch(fetchProductsFailure(error.message));
@@ -62,7 +61,7 @@ export const fetchTopProducts = () => async (dispatch) => {
 export const fetchNewArrivals = () => async (dispatch) => {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/products?page=1');
+      const response = await axios.get('https://ecommerce-django-ittf.onrender.com/api/products?page=1');
       dispatch(fetchProductsSuccess(response.data.results)); 
     } catch (error) {
       dispatch(fetchProductsFailure(error.message));
@@ -72,7 +71,7 @@ export const fetchNewArrivals = () => async (dispatch) => {
   export const searchProducts = (query) => async (dispatch) => {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/products/search/${query}`);
+      const response = await axios.get(`https://ecommerce-django-ittf.onrender.com/api/products/search/${query}`);
       dispatch(fetchProductsSuccess(response.data));
     } catch (error) {
       dispatch(fetchProductsFailure(error.message));
@@ -84,7 +83,7 @@ export const fetchNewArrivals = () => async (dispatch) => {
   export const fetchSortedProducts = () => async (dispatch) => {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.get('http://localhost:8000/api/products/sorted-by-price/');
+      const response = await axios.get('https://ecommerce-django-ittf.onrender.com/api/products/sorted-by-price/');
       dispatch(fetchProductsSuccess(response.data.results)); 
     } catch (error) {
       dispatch(fetchProductsFailure(error.message));

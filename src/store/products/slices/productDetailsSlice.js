@@ -5,7 +5,7 @@ export const fetchProductDetails = createAsyncThunk(
   'productDetails/fetchProductDetails',
   async (productId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+      const response = await fetch(`https://ecommerce-django-ittf.onrender.com/api/products/${productId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch product details');
       }
@@ -28,7 +28,7 @@ export const postProductReview = createAsyncThunk(
       }
       
 
-      const response = await fetch(`http://localhost:8000/api/products/${productId}/reviews/create/`, {
+      const response = await fetch(`https://ecommerce-django-ittf.onrender.com/api/products/${productId}/reviews/create/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const fetchProductReviews = createAsyncThunk(
   'productDetails/fetchProductReviews',
   async (productId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/products/${productId}/reviews/`);
+      const response = await fetch(`https://ecommerce-django-ittf.onrender.com/api/products/${productId}/reviews/`);
       if (!response.ok) {
         throw new Error('Failed to fetch product reviews');
       }

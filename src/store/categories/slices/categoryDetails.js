@@ -12,7 +12,7 @@ export const fetchCategoryDetails = createAsyncThunk(
   'categoryDetails/fetchCategoryDetails',
   async (categoryId) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/categories/${categoryId}`);
+      const response = await axios.get(`https://ecommerce-django-ittf.onrender.com/api/categories/${categoryId}`);
       return response.data;
     } catch (error) {
       throw new Error(error.message);

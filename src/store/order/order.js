@@ -10,7 +10,7 @@ export const fetchUserOrders = createAsyncThunk(
   'order/userOrders',
   async () => {
     const token = getAuthToken();
-    const response = await axios.get('http://localhost:8000/orders/', {
+    const response = await axios.get('https://ecommerce-django-ittf.onrender.com/orders/', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -24,7 +24,7 @@ export const fetchOrderById = createAsyncThunk(
   'order/fetchOrderById',
   async (orderId) => {
     const token = getAuthToken();
-    const response = await axios.get(`http://localhost:8000/orders/${orderId}`, {
+    const response = await axios.get(`https://ecommerce-django-ittf.onrender.com/orders/${orderId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,7 +37,7 @@ export const cancelOrder = createAsyncThunk(
     'order/cancelOrder',
     async (orderId) => {
       const token = getAuthToken();
-      await axios.patch(`http://localhost:8000/orders/${orderId}/cancel`, null, {
+      await axios.patch(`https://ecommerce-django-ittf.onrender.com/orders/${orderId}/cancel`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,21 +46,6 @@ export const cancelOrder = createAsyncThunk(
     }
   );
 
-// export const addOrder = createAsyncThunk(
-//   'order/addOrder',
-//   async () => {
-//     const token = getAuthToken();
-//     // Make necessary changes to add an order
-//     const response = await axios.post('http://localhost:8000/orders/checkout-session', {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     return response.data;
-//   }
-// );
-
-
 
 export const checkout = createAsyncThunk(
     'order/checkout',
@@ -68,7 +53,7 @@ export const checkout = createAsyncThunk(
         try {
             const token = getAuthToken();
             const response = await fetch(
-                "http://localhost:8000/orders/checkout-session",
+                "https://ecommerce-django-ittf.onrender.com/orders/checkout-session",
                 {
                     method: 'POST',
                     headers: {
@@ -99,8 +84,7 @@ export const removeOrder = createAsyncThunk(
   'order/removeOrder',
   async (orderId) => {
     const token = getAuthToken();
-    // Make necessary changes to remove an order
-    await axios.delete(`http://localhost:8000/orders/${orderId}`, {
+    await axios.delete(`https://ecommerce-django-ittf.onrender.com/orders/${orderId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -125,10 +109,7 @@ const orderSlice = createSlice({
     })
     .addCase(fetchOrderById.fulfilled, (state, action) => {
       state.loading = false;
-      console.log(action.payload)
-      // state.order = action.payload.order_items;
       state.order = action.payload;
-      // console.log(state.order)
       state.error = '';
     })
     .addCase(fetchOrderById.rejected, (state, action) => {
@@ -142,12 +123,10 @@ const orderSlice = createSlice({
       })
       .addCase(checkout.fulfilled, (state, action) => {
         state.loading = false;
-        // Handle adding order to state
         state.error = '';
       })
       .addCase(removeOrder.fulfilled, (state, action) => {
         state.loading = false;
-        // Handle removing order from state
         state.error = '';
       })
       .addMatcher(

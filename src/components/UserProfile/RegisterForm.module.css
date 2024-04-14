@@ -1,0 +1,82 @@
+.image-container {
+  position: relative;
+  text-align: center;
+}
+.image-container img{
+  width: 100%
+}
+
+.form-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center; 
+}
+
+.login-button {
+  width: 100%;
+  background-color: rgb(0,0,0);;
+  border: none;
+  margin-top: 20px;
+}
+
+.login-button:hover {
+  background-color: #ccc;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.error-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #5c9735;
+  border: none;
+  color: white;
+}
+
+.login-button:hover {
+  background-color: #4e7d2f;
+  color: white;
+
+}
+
+/* For screens smaller than 576px (extra small devices) */
+@media (max-width: 575.98px) {
+  .form-overlay {
+    max-width:50%;
+  }
+}
+
+/* For screens between 576px and 767.98px (small devices) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .form-overlay {
+    max-width:55%;
+  }
+}
+
+/* For screens between 768px and 991.98px (medium devices) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .form-overlay {
+    max-width: 50%;
+  }
+}
+
+/* For screens between 992px and 1199.98px (large devices) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .form-overlay {
+    max-width: 50%;
+  }
+}
+
