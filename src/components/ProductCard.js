@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { addItemToWishlist, deleteWishlistItem  } from './../store/wishlists/wishlist-actions'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { wishlistActions  } from "../store/wishlists/wishlist-slice";
+import {addToCart} from './../store/cart/cart'
 
 
 
@@ -20,13 +20,14 @@ import flower from "../assets/images/flower.jpg";
 import { getAuthToken } from './../util/auth'
 function ProductCard({ product }) {
   const dispatch = useDispatch();
-  const wishlistItems = useSelector((state) => state.wishlist.wishlist);
+  const cartItems = useSelector((state) => state.cart.cart);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
     const token = getAuthToken()
     if(token){
-      setIsInWishlist(wishlistItems.some(item => item._id === product._id));
+      setIsInWishlist(wishlistItems?.some(item => item._id === product._id));
     }
     }, [dispatch]);
 
@@ -39,6 +40,10 @@ function ProductCard({ product }) {
     } else {
       dispatch(addItemToWishlist(product));
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product._id));
   };
 
 
@@ -84,9 +89,8 @@ function ProductCard({ product }) {
         </div>
         <div className="button-container">
           <Button
-            className={`add-to-cart-button ${
-              product.stock <= 0 ? "out-of-stock" : ""
-            }`}
+            onClick={handleAddToCart} // Call handleAddToCart function on click
+            className={`add-to-cart-button ${product.stock <= 0 ? 'out-of-stock' : ''}`}
             text="Add to Cart"
             width="100%"
             height="40px"
