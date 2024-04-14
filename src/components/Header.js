@@ -75,12 +75,6 @@ function Header({ isHeroHeader }) {
                 </Nav.Link>
               </LinkContainer>
 
-              {/* <LinkContainer to="/cart">
-                <Nav.Link>
-                  <i class="fa-solid fa-bag-shopping"></i>
-                </Nav.Link>
-              </LinkContainer> */}
-
               <LinkContainer to="/cart">
                 <Nav.Link>
                 <div style={{ position: 'relative', display: 'inline-block' }}>

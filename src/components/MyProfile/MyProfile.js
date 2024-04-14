@@ -6,6 +6,7 @@ import { Form as RForm } from "react-router-dom";
 import ChangePasswordPopup from "./../ChangePasswordPopup";
 import { useNavigate } from "react-router-dom";
 import { json } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 function MyProfile({ profile }) {
   const navigate = useNavigate();
@@ -114,6 +115,11 @@ function MyProfile({ profile }) {
               <div>
                 {profile.first_name} {profile.last_name}
               </div>
+              <Link to="/orders" className="nav-link">
+                Orders
+                <button text="Orders" ></button>
+              </Link>
+
               <Nav.Link onClick={handlePasswordPopup}>Change Password</Nav.Link>
               <Form className="nav-link">
                 <button

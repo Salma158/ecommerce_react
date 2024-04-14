@@ -37,7 +37,6 @@ const MyWishlist = () => {
   };
   
 
-  const [isChecked, setIsChecked] = useState({});
 
   if (loading) {
     return <LoadingSpinner />;
@@ -56,7 +55,6 @@ const MyWishlist = () => {
                 <thead>
                   <tr>
                     <th></th>
-                    <th></th>
                     <th>Product name</th>
                     <th>Unit price</th>
                     <th>Stock status</th>
@@ -67,18 +65,6 @@ const MyWishlist = () => {
                   {wishlist.length > 0 &&
                     wishlist.map((product) => (
                       <tr key={product._id}>
-                        <td className="checkbox-cell">
-                          <input
-                            type="checkbox"
-                            checked={isChecked[product._id]}
-                            onChange={() =>
-                              setIsChecked({
-                                ...isChecked,
-                                [product._id]: !isChecked[product._id],
-                              })
-                            }
-                          />
-                        </td>
 
                         <td>
                           <img

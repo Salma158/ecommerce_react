@@ -43,7 +43,14 @@ function ProductCard({ product }) {
   };
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product._id));
+    const token = getAuthToken();
+  
+    if (token) {
+      dispatch(addToCart(product._id));
+      alert("Product added to cart");
+    } else {
+      alert("Please login first");
+    }
   };
 
 

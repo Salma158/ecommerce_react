@@ -13,17 +13,15 @@ import {
 } from "mdb-react-ui-kit";
 import "./OrderDetails.css";
 import Button from "../../components/Button";
-import { useParams } from 'react-router-dom'; // Import useParams to get orderId from URL params
+import { useParams } from 'react-router-dom'; 
 
 
-const Order = () => { // Accept orderId as a prop
-  const { orderId } = useParams(); // Get orderId from URL params
+const Order = () => { 
+  const { orderId } = useParams(); 
   const dispatch = useDispatch();
-  //const orderData = useSelector((state) => state.order); // Assuming your slice is named 'order'
-  const { order, order_items, loading, error } = useSelector((state) => state.order);
+  const { order, order_items , loading, error } = useSelector((state) => state.order.order);
   useEffect(() => {
     dispatch(fetchOrderById(orderId));
-    console.log(order_items)
   }, [dispatch, orderId]);
 
   
@@ -38,7 +36,7 @@ const Order = () => { // Accept orderId as a prop
 
   return (
     <>
-      <section className="vh-100 gradient-custom-2">
+      <section className="vh-100" style={{ backgroundColor: "#f4f6f3" }}>
         {order && (
           <MDBContainer className="py-5 h-100">
             <MDBRow className="justify-content-center align-items-center h-100">
@@ -81,14 +79,14 @@ const Order = () => { // Accept orderId as a prop
                     </div>
                   </MDBCardHeader>
                   <MDBCardBody className="p-4">
-                    {order_items && order_items.data.map((item, index) => (
+                    {order_items && order_items.map((item, index) => (
                       <div className="d-flex flex-row mb-4 pb-2" key={index}>
                         <div className="flex-fill">
                           <MDBTypography tag="h5" className="bold">
-                            Product Name: {item.productname}
+                            Product Name: {item.product.productname}
                           </MDBTypography>
                           <p className="text-muted">
-                            Quantity: {item.quantity} item
+                            Quantity: {item.product.quantity} item
                           </p>
                           <MDBTypography tag="h4" className="mb-3">
                             {" "}
@@ -106,8 +104,8 @@ const Order = () => { // Accept orderId as a prop
                           <MDBCardImage
                             fluid
                             className="align-self-center"
-                            src={item.image}
-                            alt={item.productname}
+                            src={item.product.image}
+                            alt={item.product.productname}
                             width="250"
                           />
                         </div>

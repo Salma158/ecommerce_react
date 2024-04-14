@@ -114,6 +114,7 @@ const orderSlice = createSlice({
   initialState: {
     loading: true,
     orders: [],
+    order : [],
     error: ''
   },
   reducers: {},
@@ -124,7 +125,10 @@ const orderSlice = createSlice({
     })
     .addCase(fetchOrderById.fulfilled, (state, action) => {
       state.loading = false;
+      console.log(action.payload)
+      // state.order = action.payload.order_items;
       state.order = action.payload;
+      // console.log(state.order)
       state.error = '';
     })
     .addCase(fetchOrderById.rejected, (state, action) => {
