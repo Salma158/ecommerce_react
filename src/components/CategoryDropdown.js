@@ -23,7 +23,7 @@ function CategoryDropdown() {
       <Dropdown.Menu style={{ background: "transparent" }}>
         {categories.map((category) => (
           <Dropdown.Item key={category.id} style={{background: "transperent"}}>
-            <NavLink to={`/categories/${category.id}/products`} style={{ textDecoration: "none" , color: "Black" , fontSize: "1.4rem" , fontStyle: "Bold"}}>{category.categoryname}</NavLink>
+            <NavLink to={`/categories/${category.id}/products`} style={{ textDecoration: "none" , color: "Black" , fontSize: "2rem" , fontStyle: "Bold"}}>{category.categoryname}</NavLink>
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>

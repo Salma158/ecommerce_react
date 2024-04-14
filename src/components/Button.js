@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const Button = ({ onClick, text, width, height, backgroundColor, color, disabled , marginLeft}) => {
+const Button = ({ onClick, text, width, height, backgroundColor, color, disabled , marginTop , marginLeft}) => {
   const buttonStyle = {
     width: width || 'auto',
     height: height || 'auto',
@@ -16,7 +16,9 @@ const Button = ({ onClick, text, width, height, backgroundColor, color, disabled
     fontWeight: 'bold',
     outline: 'none',
     opacity: disabled ? 0.5 : 1,
+    marginTop: marginTop || '0',
     marginLeft: marginLeft || '0',
+
   };
 
   return (

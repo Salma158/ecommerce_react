@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import StarRating from '../components/StarRating';
 import './SingleProduct.css';
 import {addToCart} from './../store/cart/cart'
+import flower from "../assets/images/flower.jpg"
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -96,9 +97,13 @@ const SingleProduct = () => {
         <div>
           <div className="product-details">
             <h1>{product.productname}</h1>
-            <img src={product.image} alt={product.productname} className="main-product-image" />
+    
+
+            <img src={product.image || flower} alt={product.productname} className="main-product-image" />
             <p>Brand: {product.productbrand}</p>
-            <p>Price: ${product.price}</p>
+            <p>Price: ${product.price} EGP</p>
+            <p>Number of reviews:  {product.num_reviews} </p>
+
 
             <div className="rating-section">
               <StarRating rating={rating} onChange={handleRatingChange} clickable />
@@ -119,6 +124,11 @@ const SingleProduct = () => {
               {product.stock <= 0 && <div className="out-of-stock-label">Out of Stock</div>}
             </div>
           </div>
+          <div className="additional-images">
+    {product.images.map((image, index) => (
+      <img key={index} src={image.image} alt={`Product ${index + 1}`} className="additional-product-image" />
+    ))}
+  </div>
           <div className="product-description">
             <h2>Description</h2>
             <p>{product.productinfo}</p>
