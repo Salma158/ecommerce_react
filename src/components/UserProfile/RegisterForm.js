@@ -58,7 +58,7 @@ const RegisterForm = () => {
             // className="fluid"
             // style={{ height: imageHeight, width: "100%" }}
             // className={styles["form-image"]}
-            style={{ height: imageHeight, objectFit: "cover" }} 
+            style={{ height: imageHeight }} 
           />
           <RForm
             method="post"
