@@ -15,7 +15,7 @@ function HeroSection() {
           <div className="hero-line">with our floral wonders.</div>
           {}
           <Link to="/products">
-            <Button text="Shop Now" backgroundColor="#ffffff" color="#000000" />
+            <Button text="Shop Now" backgroundColor="#ffffff" color="#000000"  marginTop={20} width={150} height={50}/>
           </Link>
         </div>
       </div>

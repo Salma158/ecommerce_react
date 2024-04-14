@@ -29,7 +29,7 @@ function TopProducts() {
 
   return (
     <Container>
-      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif' }}>Top Products</h1>
+      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif', fontWeight: "300px" , fontSize: "60px" }}>Top Products</h1>
 
       <Row>
         {}

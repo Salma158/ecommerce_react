@@ -78,4 +78,16 @@ export const fetchNewArrivals = () => async (dispatch) => {
       dispatch(fetchProductsFailure(error.message));
     }
   };
+
+
+
+  export const fetchSortedProducts = () => async (dispatch) => {
+    dispatch(fetchProductsStart());
+    try {
+      const response = await axios.get('http://localhost:8000/api/products/sorted-by-price/');
+      dispatch(fetchProductsSuccess(response.data.results)); 
+    } catch (error) {
+      dispatch(fetchProductsFailure(error.message));
+    }
+  };
 export default productsSlice.reducer;
