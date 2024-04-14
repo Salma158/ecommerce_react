@@ -37,11 +37,12 @@ export const cancelOrder = createAsyncThunk(
     'order/cancelOrder',
     async (orderId) => {
       const token = getAuthToken();
-      await axios.patch(`https://ecommerce-django-ittf.onrender.com/orders/${orderId}/cancel`, null, {
+      await axios.patch(`https://ecommerce-django-ittf.onrender.com/orders/${orderId}/cancel`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("in action", orderId)
       return orderId;
     }
   );
@@ -66,9 +67,8 @@ export const checkout = createAsyncThunk(
                 throw new Error(errorData.detail);
             }
             const data = await response.json();
-            console.log(data)
             console.log(response.data)
-            return window.location.href = data.url;
+            return window.location.href = data.checkout_url;
         } catch (error) {
             toast.error(error.message, {
                 position: toast.POSITION.TOP_RIGHT,

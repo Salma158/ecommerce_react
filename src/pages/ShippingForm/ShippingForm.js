@@ -3,11 +3,15 @@ import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBIn
 import shippingImage from '../../assets/images/flower_shipping.jpg';
 import Button from '../../components/Button';
 import { addShippingAddress } from '../../store/shippingDetails/shippingDetails';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkout } from '../../store/order/order';
+import { useEffect } from 'react';
 
 function ShippingForm() {
   const dispatch = useDispatch();
+  const address = useSelector(state=>state.shippingAddress.addressInfo)
+  console.log("myaddrsss", address)
+
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -54,12 +58,14 @@ function ShippingForm() {
       setFormErrors(errors);
     } else {
       dispatch(addShippingAddress(formData)); 
-      dispatch(checkout()); // Dispatch the checkout action
+       // Dispatch the checkout action
 
-      // Optionally, you can navigate to the payment page here
-      // window.location.href = '/payment';
     }
   };
+  useEffect(()=>{
+    if(address)
+      {dispatch(checkout());}
+  },[address])
 
   return (
     <MDBContainer className="py-5" style={{ maxWidth: '1100px' }}>
