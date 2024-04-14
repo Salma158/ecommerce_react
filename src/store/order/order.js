@@ -37,28 +37,15 @@ export const cancelOrder = createAsyncThunk(
     'order/cancelOrder',
     async (orderId) => {
       const token = getAuthToken();
-      await axios.patch(`http://localhost:8000/orders/${orderId}/cancel`, null, {
+      await axios.patch(`http://localhost:8000/orders/${orderId}/cancel`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("in action", orderId)
       return orderId;
     }
   );
-
-// export const addOrder = createAsyncThunk(
-//   'order/addOrder',
-//   async () => {
-//     const token = getAuthToken();
-//     // Make necessary changes to add an order
-//     const response = await axios.post('http://localhost:8000/orders/checkout-session', {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     return response.data;
-//   }
-// );
 
 
 
@@ -81,9 +68,8 @@ export const checkout = createAsyncThunk(
                 throw new Error(errorData.detail);
             }
             const data = await response.json();
-            console.log(data)
             console.log(response.data)
-            return window.location.href = data.url;
+            return window.location.href = data.checkout_url;
         } catch (error) {
             toast.error(error.message, {
                 position: toast.POSITION.TOP_RIGHT,
@@ -99,7 +85,6 @@ export const removeOrder = createAsyncThunk(
   'order/removeOrder',
   async (orderId) => {
     const token = getAuthToken();
-    // Make necessary changes to remove an order
     await axios.delete(`http://localhost:8000/orders/${orderId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -142,12 +127,10 @@ const orderSlice = createSlice({
       })
       .addCase(checkout.fulfilled, (state, action) => {
         state.loading = false;
-        // Handle adding order to state
         state.error = '';
       })
       .addCase(removeOrder.fulfilled, (state, action) => {
         state.loading = false;
-        // Handle removing order from state
         state.error = '';
       })
       .addMatcher(

@@ -14,7 +14,18 @@ import {
 import "./OrderDetails.css";
 import Button from "../../components/Button";
 import { useParams } from 'react-router-dom'; 
+import { cancelOrder } from "../../store/order/order";
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Import necessary dependencies and functions
 
 const Order = () => { 
   const { orderId } = useParams(); 
@@ -24,7 +35,9 @@ const Order = () => {
     dispatch(fetchOrderById(orderId));
   }, [dispatch, orderId]);
 
-  
+  const handleCancelOrder = () => {
+    dispatch(cancelOrder(orderId)); // Dispatch cancelOrder action with orderId
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -50,23 +63,48 @@ const Order = () => {
                       <div>
                         <p className="text-muted mb-2">
                           {" "}
-                          Order ID{" "}
+                          Order ID:{" "}
                           <span className="fw-bold text-body">
                             {order.order_id}
                           </span>
                         </p>
                         <p className="text-muted mb-0">
                           {" "}
-                          Placed On{" "}
+                          Placed On:{" "}
                           <span className="fw-bold text-body">
-                            {order.placing_date}
+                            {formatDate(order.placing_date)}
                           </span>{" "}
                         </p>
+                        <p className="text-muted mb-2">
+                          {" "}
+                          Order Status:{" "}
+                          <span className="fw-bold text-body">
+                            {order.order_status}
+                          </span>
+                        </p>
+                        <p className="text-muted mb-2">
+                          {" "}
+                          Shipping Status:{" "}
+                          <span className="fw-bold text-body">
+                            {order.shipping_status}
+                          </span>
+                        </p>
+                        {/* <p className="text-muted mb-2">
+                          {" "}
+                          Shipping Address:{" "}
+                          <span className="fw-bold text-body">
+                            {order.shipping_address.address}
+                          </span>
+                        </p> */}
+                        <MDBTypography tag="h5" className="bold">
+                        Expected Delivery Date: {formatDate(order.delivery_date)} {/* Assuming productname is available in order_items */}
+                          </MDBTypography>
                       </div>
                       <div>
                         <MDBTypography tag="h6" className="mb-0">
                           <div className="d-flex justify-content-end pt-3">
                             <Button
+                            onClick={handleCancelOrder}
                               text="Cancel"
                               width="auto"
                               height="auto"
@@ -83,55 +121,28 @@ const Order = () => {
                       <div className="d-flex flex-row mb-4 pb-2" key={index}>
                         <div className="flex-fill">
                           <MDBTypography tag="h5" className="bold">
-                            Product Name: {item.product.productname}
+                            {item.product.productname} {/* Assuming productname is available in order_items */}
                           </MDBTypography>
+                          
                           <p className="text-muted">
-                            Quantity: {item.product.quantity} item
+                            Quantity: {item.quantity} item
                           </p>
                           <MDBTypography tag="h4" className="mb-3">
                             {" "}
-                            $ {item.price}{" "}
-                            {/* <span className="small text-muted">
-                              Payment Method: via {order.payment_method}{" "}
-                            </span> */}
+                            EGP {item.price}{" "}
                           </MDBTypography>
-                          {/* <p className="text-muted">
-                            Order Status:{" "}
-                            <span className="text-body">{order.order_status}</span>
-                          </p> */}
                         </div>
                         <div>
                           <MDBCardImage
                             fluid
                             className="align-self-center"
-                            src={item.product.image}
-                            alt={item.product.productname}
+                            src={item.product.image} // Assuming image URL is available in order_items
+                            alt={item.productname}
                             width="250"
                           />
                         </div>
                       </div>
                     ))}
-
-                    <ul
-                      id="progressbar-1"
-                      className="mx-0 mt-0 mb-5 px-0 pt-0 pb-4"
-                    >
-                      <li className="step0 active" id="step1">
-                        <span
-                          style={{ marginLeft: "22px", marginTop: "12px" }}
-                        >
-                          PLACED
-                        </span>
-                      </li>
-                      <li className="step0 active text-center" id="step2">
-                        <span>SHIPPED</span>
-                      </li>
-                      <li className="step0 text-muted text-end" id="step3">
-                        <span style={{ marginRight: "22px" }}>
-                          DELIVERED
-                        </span>
-                      </li>
-                    </ul>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
