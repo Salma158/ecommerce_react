@@ -28,7 +28,7 @@ function NewArrivals() {
 
   return (
     <Container>
-      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif',  marginTop: "0px"}}>New Arrivals</h1>
+      <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif',  marginTop: "0px" , fontWeight: "300px" , fontSize: "60px"}}>New Arrivals</h1>
 
       <Row style={{marginBottom: "30px"}}>
         {products && products.map((product) => (

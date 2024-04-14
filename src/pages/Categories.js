@@ -37,7 +37,7 @@ function Categories() {
         </Col>
         <Col className="productButton">
           <Link to="/products">
-            <Button text="Products" backgroundColor="#000000" color="#ffffff" width={200} />
+            <Button text="Products" backgroundColor="#000000" color="#ffffff" width={200}  height={60} fontSize={85}/>
           </Link>
         </Col>
       </Row>

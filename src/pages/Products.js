@@ -42,7 +42,7 @@ function Products() {
       <Container>
         <Row className="products-header">
           <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-            <h1 className='products' style={{ fontFamily: 'Unna, serif', marginBottom: '20px' }}>Products</h1>
+            <h1 className='products' style={{ fontFamily: 'Unna, serif', marginBottom: '20px' , fontWeight: "300px" , fontSize: "60px" }}>Products</h1>
           </Col>
           <Col xs={6} sm={6} md={6} lg={6} xl={6}>
             <div className="text-right">
