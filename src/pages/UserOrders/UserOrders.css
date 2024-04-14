@@ -1,0 +1,61 @@
+/* orders.css */
+
+/* Container styles */
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Card styles */
+  .order-card {
+    display: flex; /* Change to flex display to align image and content */
+    width: 100%; /* Make card take full width of its container */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .order-card-image {
+    flex: 0 0 120px; /* Set fixed width for image */
+    border-radius: 10px 0 0 10px; /* Round only left corners */
+    object-fit: cover; /* Ensure the image covers the space */
+  }
+  
+  .order-card-content {
+    flex: 1; /* Fill remaining space */
+    padding: 20px;
+  }
+  
+  .order-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .order-card-text {
+    margin-bottom: 15px;
+  }
+  
+  .order-card-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-card-button:hover {
+    background-color: #0056b3;
+  }
+  
