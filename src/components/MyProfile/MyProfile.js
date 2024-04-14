@@ -7,6 +7,7 @@ import ChangePasswordPopup from "./../ChangePasswordPopup";
 import { useNavigate } from "react-router-dom";
 import { json } from "react-router-dom";
 
+
 function MyProfile({ profile }) {
   const navigate = useNavigate();
 
@@ -123,7 +124,7 @@ function MyProfile({ profile }) {
                 >
                   Delete Account
                 </button>
-              </Form>
+             </Form>
               <RForm action="/logout" method="post" className="nav-link">
                 <button type="submit" className={styles.logoutbutton}>
                   Logout
@@ -228,6 +229,7 @@ function MyProfile({ profile }) {
                       >
                         Submit
                       </Button>
+              
                     </div>
                   ) : (
                     <Button
