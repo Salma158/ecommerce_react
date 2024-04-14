@@ -25,7 +25,6 @@ function formatDate(dateString) {
   });
 }
 
-// Import necessary dependencies and functions
 
 const Order = () => { 
   const { orderId } = useParams(); 
@@ -49,14 +48,15 @@ const Order = () => {
 
   return (
     <>
-      <section className="vh-100" style={{ backgroundColor: "#f4f6f3" }}>
+      <section className="vh-100" style={{ backgroundColor: "#f4f6f3", marginBottom: "300px" }}>
         {order && (
-          <MDBContainer className="py-5 h-100">
+          <MDBContainer className="py-5 h-100 mb-5" style={{ marginBottom: '20px' }}>
+
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol md="10" lg="8" xl="6">
                 <MDBCard
                   className="card-stepper"
-                  style={{ borderRadius: "16px" }}
+                  style={{ borderRadius: "16px"}}
                 >
                   <MDBCardHeader className="p-4">
                     <div className="d-flex justify-content-between align-items-center">

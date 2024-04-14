@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Link } from 'react-router-dom'; // Import Link from React Router
+import LoadingSpinner from "../components/LoadingSpinner"; 
 
 
 
@@ -21,14 +22,13 @@ const MyCart = () => {
     dispatch(updateCart({ productId: product._id, actionType }));
   };
   
-
-  
+ 
   useEffect(() => {
     dispatch(fetchCart());
   }, [dispatch]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
