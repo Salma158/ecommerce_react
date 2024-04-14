@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts, setCurrentPage, searchProducts } from '../store/products/slices/productsSlice';
+import { fetchProducts, setCurrentPage, searchProducts, fetchSortedProducts } from '../store/products/slices/productsSlice';
 import ProductCard from '../components/ProductCard';
 import "./Products.css"
 
@@ -30,6 +29,10 @@ function Products() {
     }
   };
 
+  const handleSortByPrice = () => {
+    dispatch(fetchSortedProducts());
+  };
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -37,7 +40,17 @@ function Products() {
   return (
     <div>
       <Container>
-        <h1 className='products' style={{ textAlign: 'center', fontFamily: 'Unna, serif' }}>Products</h1>
+        <Row className="products-header">
+          <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+            <h1 className='products' style={{ fontFamily: 'Unna, serif', marginBottom: '20px' }}>Products</h1>
+          </Col>
+          <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+            <div className="text-right">
+              <button onClick={handleSortByPrice} className="sort-by-price-btn" style={{textDecoration: "none" , marginTop: "15px" , marginLeft: "370px"}}>Sort by Price</button>
+             
+            </div>
+          </Col>
+        </Row>
 
         <Form.Group controlId="search" className='searchbar'>
           <Form.Control
@@ -68,6 +81,7 @@ function Products() {
           ))}
         </Row>
       </Container>
+
       <div className="pagination-container">
         <button className="pagination-button" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           Previous
@@ -82,4 +96,3 @@ function Products() {
 }
 
 export default Products;
-
